@@ -1,0 +1,37 @@
+\documentclass[11pt]{amsart}
+\usepackage{geometry}                % See geometry.pdf to learn the layout options. There are lots.
+\geometry{letterpaper}                   % ... or a4paper or a5paper or ... 
+%\geometry{landscape}                % Activate for for rotated page geometry
+\usepackage[parfill]{parskip}    % Activate to begin paragraphs with an empty line rather than an indent
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{epstopdf}
+\usepackage{pifont}
+\DeclareGraphicsRule{.tif}{png}{.png}{`convert #1 `dirname #1`/`basename #1 .tif`.png}
+
+\title{Number guessing game }
+\author{Homework 2, due Thursday, February 14, 2013}
+%\date{}
+
+
+\begin{document}
+\maketitle
+
+\subsection*{Minimum Requirements}
+Please write a Python script that randomly chooses an integer from 1-20 and loops until the user can guess the number. The program must also keep track of the elapsed time the user takes to correctly guess the number, and should output that information when the correct guess is given.
+
+\subsection*{Concepts used}
+The concepts used in this program may include, but is not limited to, information capture (i.e., \texttt{input()} etc.), conditional statements (i.e., \texttt{if ... else} etc), dummyproofing (i.e., checking to see whether user's input is valid), loops, using an infinite loop (i.e., \texttt{while( True ):}, using \texttt{break} to get out), etc...
+
+\subsection*{Python Packages to be Used}
+\texttt{time}, \texttt{random}
+
+\subsection*{Additional Optional Features}
+If you'd like to challenge yourself, here are some additional features of your homework that might make it more fun:
+\begin{itemize}
+	\item You could prompt the user before the game begins to specify the range of numbers between which the random number will be.
+	\item You could tell the user "higher" or "lower after each guess.
+	\item You could keep track of how many guesses it took the user to guess the number, and output that info at the end of the game.
+	\item You could make it a two player game, or even an \emph{n}-player game, and decide which player wins based on smallest number of guesses or smallest amount of time elapsed to get the correct answer.
+\end{itemize}
+\end{document}  
