@@ -1,4 +1,4 @@
 Python-Class-Course-Materials
 =============================
 
-Code related to the Python Programming class I taught Spring 2013
+Code, presentations, homework assignments, and syllabus related to my Introduction to Python course taught at FAES from Spring 2013-present.
