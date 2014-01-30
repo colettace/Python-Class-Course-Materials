@@ -38,18 +38,15 @@
 			<div class="slides">
 				<section>
 					<h1>BIOF 309</h1>
-					<h3>Introduction to Python</h3>
-					<p>
-						<small><a href="http://www.chriscoletta.com">Chris Coletta</a> / <a href="http://twitter.com/blahblahetcetc">@blahblahetcetc</a></small><br/>
-						<small><a href="http://www.mattshirley.com">Matt Shirley</a> / <a href="http://twitter.com/mdshw5">@mdshw5</a></small><br/>
-						<small>Anatoly Dryga / <a href="mailto:anatoly.dryga@nih.gov">anatoly.dryga@nih.gov</a></small><br/>
-						<small>Ben Busby / <a href="mailto:ben.busby@gmail.com">ben.busby@gmail.com</a></small>
-					</p>
+					<h3>Introduction and Installation</h3>
+					<h3>Christopher Coletta</h3>
 				</section>
 				<section data-markdown id="talk_outline">
   <script type="text/template">
 ## Class 1 Outline
-1. Housekeeping issues
+1. About Me
+2. Goals for the course
+2. About the course
 2. How to get help
 3. Discussion of programming language ecosystem and where Python fits in
 4. What makes Python distinctive
@@ -60,6 +57,131 @@
 9. Homework: Email me the magic number.
 </script>
 </section>
+
+				<section data-markdown id="aboutme">
+					<script type="text/template">
+						## About Me
+						* Computer Scientist, NIH NIA LG IICBU
+						* Specialize in computer vision, machine learning
+						* Project: WND-CHARM
+						* Software Engineer writing software professionally since 2006
+					</script>
+				</section>
+
+
+				<section data-markdown id="goals">
+					<script type="text/template">
+						## Goals for BIOF309
+- To teach you how to write programs that provide insight into your data <!-- .element: class="fragment"  -->
+- To teach you how to think like a computer <!-- .element: class="fragment"  -->
+- Teach you HOW to learn other programming languages in the future. <!-- .element: class="fragment"  -->
+					</script>
+				</section>
+
+				<section data-markdown id="about">
+					<script type="text/template">
+						## About the course
+* Target audience: Research professionals who have not programmed before <!-- .element: class="fragment" -->
+* Style of course is linear: one concept builds on the next <!-- .element: class="fragment" -->
+* Screencast lectures <!-- .element: class="fragment" -->
+* No required textbook <!-- .element: class="fragment" -->
+* Final grade: 80% homework, 20% final project <!-- .element: class="fragment" -->
+* All questions related to material and logistics: use google groups email list <!-- .element: class="fragment" -->
+* Any file submission: follow naming convention lastname_firstinitial_hw99_STUFF.py <!-- .element: class="fragment" -->
+					</script>
+				</section>
+				<section>
+				<section>
+					<h2>How to get help</h2>
+					<p>
+					<figure>
+					<img src="stress_reduction_kit.png">
+					</figure>
+					</p>
+				</section>
+
+				<section data-markdown id="help">
+					<script type="text/template">
+## How to get help
+* If you get an error message, READ THE ERROR MESSAGE <!-- .element: class="fragment" -->
+* Google error message, or google your question "How do I ..." <!-- .element: class="fragment" -->
+* Trial and error <!-- .element: class="fragment" -->
+    * "Worst thing that can happen is that it won't work" - Coglianti <!-- .element: class="fragment" -->
+* help() in the console <!-- .element: class="fragment" -->
+* links: <!-- .element: class="fragment" -->
+    * [Instructional Videos](http://showmedo.com) <!-- .element: class="fragment" -->
+    * [Beginner's Guide for non-programmers](http://wiki.python.org/moin/BeginnersGuide/NonProgrammers) <!-- .element: class="fragment" -->
+    * [How to think like a computer scientist](http://interactivepython.org/courselib/static/thinkcspy/index.html) <!-- .element: class="fragment" -->
+    * [Online Python Tutor](http://www.pythontutor.com/) <!-- .element: class="fragment" -->
+    * [Learn Python The Hard Way](http://learnpythonthehardway.org) <!-- .element: class="fragment" -->
+					</script>
+				</section>
+				</section>
+
+				<section> <!-- outer -->
+
+				<section>
+				<h2>Brief Survey of Programming Languages</h2>
+				</section>
+
+				<section data-markdown id="static">
+					<script type="text/template">
+##Static Programming Languages
+* Examples: C, C++, Java
+* FAST to run, slow to develop, difficult to "try things outs"
+* Compiled into machine code before you run the program
+					</script>
+				</section>
+
+				<section>
+					<h2>Compiling xkcd Comic</h2>
+					<p>
+					<figure>
+					<a class="image" href="http://xkcd.com/303/"><img src="http://imgs.xkcd.com/comics/compiling.png"></a>
+					</figure>
+					</p>
+				</section>
+
+				<section data-markdown id="dynamic">
+				<script type="text/template">
+## Dynamic Programming Languages
+### a.k.a "scripting languages"
+* [Dynamic programming language Wiki article](http://en.wikipedia.org/wiki/Dynamic_programming_language)
+* Often used as "glue" to piece together different programs into one program
+* Code not compiled ahead of time but interpreted at run time
+* Determines the type-safety of operations at run time
+    * Type errors cannot be automatically detected until a piece of code is actually executed
+* Slower than compiled languages
+* Dynamic concept has strong overlap with "high-level programming language" concept
+    * Strong abstraction from the details of the computer, e.g., memory management
+        * E.g., Give me a array of number from 1 to 100 - a lot of stuff has to happen behind the scenes
+* Pros: Easier to use interactively (type statements in one-at-a-time, examine outputs, try things out)
+* Cons: Abstraction penalty
+</script>
+				</section>
+
+				<section data-markdown >
+				<script type="text/template">
+## Best of Both Worlds (Advanced)
+1. Write the code C and wrap it in Python
+    * E.g., Python packages Numpy & Scipy (and R, I think)
+2. [LLVM](http://en.wikipedia.org/wiki/Low_Level_Virtual_Machine) - Compiler infrastructure that does language-agnostic program optimization
+    * Python package Numba does this
+</script>
+				</section>
+
+				</section><!-- end outer -->
+
+				<section> <!-- begin python sect -->
+				<section>
+					<h2>Python</h2>
+					<p>
+					<figure>
+					<img src="python-logo-master-v3-TM.png">
+					</figure>
+					</p>
+				</section>
+
 				<section>
 					<h2>Python xkcd Comic</h2>
 					<p>
@@ -88,23 +210,18 @@
 					</p>
 				</section>
 
+				</section> <!-- end python sect -->
+
 				<section>
 						<section>
-							<h2>Mr. Scott Video</h2>
+							<h2>Interactive Python</h2>
+							<h3>Mr. Scott Video</h3>
 						</section>
 						<section>
 						<iframe class="stretch" data-autoplay src="http://www.youtube.com/embed/v9kTVZiJ3Uc" frameborder="0" allowfullscreen></iframe>
 						</section>
 				</section>
 
-				<section data-markdown id="homework">
-					<script type="text/template">
-						## Ordered List Slide
-						1. Item 1
-						2. Item 2
-						3. Item 3
-					</script>
-				</section>
 
 			</div>
 
