@@ -38,7 +38,7 @@
 			<div class="slides">
 				<section>
 					<h1>BIOF 309</h1>
-					<h3>Introduction and Installation</h3>
+					<h3>Class 1: Introduction and Installation</h3>
 					<h3>Christopher Coletta</h3>
 				</section>
 				<section data-markdown id="talk_outline">
@@ -61,9 +61,13 @@
 				<section data-markdown id="aboutme">
 					<script type="text/template">
 						## About Me
-						* Computer Scientist, NIH NIA LG IICBU
+						* Computer Scientist
+						    * NIH FTE
+						    * National Institute on Aging, JHU Bayview Campus
+								* Laboratory of Genetics, Davis Schlessinger, Cheif
+						    * Image Informatics and Computational Biology Unit, Ilya Goldberg, Head
 						* Specialize in computer vision, machine learning
-						* Project: WND-CHARM
+						* Project: [WND-CHARM](https://github.com/wnd-charm/wnd-charm)
 						* Software Engineer writing software professionally since 2006
 					</script>
 				</section>
@@ -108,7 +112,8 @@
 * Trial and error <!-- .element: class="fragment" -->
     * "Worst thing that can happen is that it won't work" - Coglianti <!-- .element: class="fragment" -->
 * help() in the console <!-- .element: class="fragment" -->
-* links: <!-- .element: class="fragment" -->
+* Email the group<!-- .element: class="fragment" -->
+* BTW, links: <!-- .element: class="fragment" -->
     * [Instructional Videos](http://showmedo.com) <!-- .element: class="fragment" -->
     * [Beginner's Guide for non-programmers](http://wiki.python.org/moin/BeginnersGuide/NonProgrammers) <!-- .element: class="fragment" -->
     * [How to think like a computer scientist](http://interactivepython.org/courselib/static/thinkcspy/index.html) <!-- .element: class="fragment" -->
@@ -121,7 +126,7 @@
 				<section> <!-- outer -->
 
 				<section>
-				<h2>Brief Survey of Programming Languages</h2>
+				<h2>Programming Languages</h2>
 				</section>
 
 				<section>
@@ -154,12 +159,8 @@
 * [Dynamic programming language Wiki article](http://en.wikipedia.org/wiki/Dynamic_programming_language)
 * Often used as "glue" to piece together different programs into one program
 * Code not compiled ahead of time but interpreted at run time
-* Determines the type-safety of operations at run time
-    * Type errors cannot be automatically detected until a piece of code is actually executed
 * Slower than compiled languages
 * Dynamic concept has strong overlap with "high-level programming language" concept
-    * Strong abstraction from the details of the computer, e.g., memory management
-        * E.g., Give me a array of number from 1 to 100 - a lot of stuff has to happen behind the scenes
 * Pros: Easier to use interactively (type statements in one-at-a-time, examine outputs, try things out)
 * Cons: Abstraction penalty
 </script>
@@ -179,6 +180,8 @@
 						## TIOBE Index
 						* [website](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html)
 					</script>
+				</section>
+
 				</section><!-- end outer -->
 
 				<section> <!-- begin python sect -->
@@ -200,6 +203,68 @@
 					<figcaption>Randall Munroe's caption: <q>I wrote 20 short programs in Python yesterday. It was wonderful. Perl, I'm leaving you.</q></figcaption>
 					</p>
 				</section>
+
+				<section>
+					<p>
+					<figure>
+						<img src="200px-Guido_van_Rossum_OSCON_2006.jpg">
+					</figure>
+					<figcaption>Guido van Rossum - Python Inventor and B.D.F.L.</figcaption>
+					</p>
+				</section>
+
+
+				<section data-markdown >
+				<script type="text/template">
+## Brief History of Python
+* Not named after the snake, but Monty Python -> FUN!
+* Published in 1991, 1.0 in 1994
+* Explicitly created as a teaching language
+    * "low-brow language," low barriers to entry, natural language syntax
+* A person who programs in Python is a "Pythonista"
+* The collective noun of a group of Pythonistas is [an "indentation."](https://gist.github.com/mariusGundersen/6925246)
+					
+				</script>
+				</section>
+
+
+				
+				<section data-markdown >
+				<script type="text/template">
+					## What makes python "Pythonic"
+* indentation style
+```python
+def perm(l):
+	"""Compute the list of all permutations of l"""
+	if len(l) <= 1:
+		return [l]
+
+	r = []
+	for i in range(len(l)):
+		s = l[:i] + l[i+1:]
+		p = perm(s)
+		for x in p:
+			r.append(l[i:i+1] + x)
+	return r
+```
+				</script>
+				</section>
+
+				<section data-markdown>
+				<script type="text/template">
+					## Moar "Pythonic"
+* <code>import this</code> <!-- .element: class="fragment" -->
+* List comprehension <!-- .element: class="fragment" -->
+* Lambda functions <!-- .element: class="fragment" -->
+* Large core library with great types sets, dicts, etc <!-- .element: class="fragment" -->
+* Everything is an object <!-- .element: class="fragment" -->
+* Exceptions <!-- .element: class="fragment" -->
+* Built to be interactive <!-- .element: class="fragment" -->
+    * Read-Evaluate-Print - one command at a time <!-- .element: class="fragment" -->
+				</script>
+				</section>
+
+
 				<section>
 					<h2>Python Data Analysis Stack</h2>
 					<p>
@@ -221,15 +286,36 @@
 
 				</section> <!-- end python sect -->
 
-				<section>
-						<section>
-							<h2>Interactive Python</h2>
-							<h3>Mr. Scott Video</h3>
+				<section><!-- begin interactive-->
+					<section data-markdown>
+						<script type="text/template">
+							## Interactive Python
+							* You talking directly to the computer! <!-- .element: class="fragment" -->
+							* The computer talks back! <!-- .element: class="fragment" -->
+							* Scotty from Star Trek IV Video: <!-- .element: class="fragment" -->
+						</script>
 						</section>
 						<section>
 						<iframe class="stretch" data-autoplay src="http://www.youtube.com/embed/v9kTVZiJ3Uc" frameborder="0" allowfullscreen></iframe>
-						</section>
+					  </section>
+
+
+				<section data-markdown>
+				<script type="text/template">
+					## IPython Notebook
+* Ideal for trying stuff out <!-- .element: class="fragment" -->
+* Interactive vocab words <!-- .element: class="fragment" -->
+    * kernel - the engine <!-- .element: class="fragment" -->
+    * prompt - >>> <!-- .element: class="fragment" -->
+* One command at a time, one statement per line <!-- .element: class="fragment" -->
+* The function and purpose of Ctrl-C <!-- .element: class="fragment" -->
+* Exceptions <!-- .element: class="fragment" -->
+* <code>%quickref</code> <!-- .element: class="fragment" -->
+* Output cache: Out[4] or _4 for example <!-- .element: class="fragment" -->
+				</script>
 				</section>
+
+				</section><!-- end interactive -->
 
 
 			</div>
