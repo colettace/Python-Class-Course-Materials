@@ -5,7 +5,7 @@ Written by Chris Coletta
 
 The purpose of this script is to test if you have properly installed Python 2.7 and NumPy
 
-The script will promt the user for his or her last name, and transform it into a single,
+The script will prompt the user for his or her last name, and transform it into a single,
 reproducible number which can be emailed to the instructor for verification.
 """
 
