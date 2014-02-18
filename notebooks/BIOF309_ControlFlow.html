@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BIOF309 Lesson 3: Iterables</title>
+<title>BIOF 309: Lesson 4: Control Flow</title>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -17,7 +17,7 @@
 
 </script>
 <style type="text/css">
-.clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
+    .clearfix{*zoom:1;}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0;}
 .clearfix:after{clear:both;}
 .hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0;}
 .input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
@@ -1708,67 +1708,33 @@ init_mathjax();
 
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="biof-309---introduction-to-python">BIOF 309 - Introduction to Python</h1>
-<h2 id="class-3-lists-loops-and-logic">Class 3: Lists, Loops and Logic</h2>
-<h3 id="thursday-february-13-2014">Thursday, February 13, 2014</h3>
-<h2 id="part-1-iterables">Part 1: Iterables</h2>
-<p>An <a href="http://docs.python.org/2/glossary.html#term-iterable">iterable</a> is a container object capable of returning its members one at a time. Examples of iterables include all sequence types (such as list, str, and tuple) and some non-sequence types like dict and file (more on files later in the semester).</p>
-<p>In this notebook we explore of some of the most important iterable types built into Python.</p>
+<h2 id="class-4-control-flow">Class 4: Control Flow</h2>
+<h3 id="thursday-february-20-2014">Thursday, February 20, 2014</h3>
+<p>Control Flow (<a href="http://en.wikipedia.org/wiki/Control_flow">wiki article</a>) is the part of a programming language's syntax that enables execution of the program to follow down one or more branches of instructions conditionaly, or going in loops.</p>
 <h3 id="table-of-contents">Table Of Contents</h3>
 <ol style="list-style-type: decimal">
-<li><a href="#lists">Lists</a></li>
-<li><a href="#tuples">Tuples</a></li>
-<li><a href="#dicts">Dictionaries</a></li>
-<li><a href="#sets">Sets</a></li>
-<li><a href="#strings">Strings</a></li>
-<li><a href="#compound">Iterables of Iterables</a></li>
-<li><a href="#deep">Shallow Copy vs. Deep Copy</a></li>
-<li><a href="#using">Using Iterables</a></li>
+<li><a href="#boolean">Boolean Expressions</a></li>
+<li><a href="#conditional">Conditional Statements</a></li>
+<li><a href="#while">While loop</a></li>
+<li><a href="#for">For loop</a></li>
+<li><a href="#exceptions">Exception handling</a></li>
 </ol>
 <hr />
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="lists"><a name="lists">Lists</a></h2>
+<h2 id="boolean-expressions"><a name="boolean">Boolean Expressions</a></h2>
+<p><code>True</code> and <code>False</code> are reserved words in Python. In addition the following values evaluate to <code>False</code> in a truth test:</p>
 <ul>
-<li>Usually known as an &quot;array&quot; in most other languages.</li>
-<li>Container for a group of values which can all be the same type (homogenous) or they can have different types (heterogenous).</li>
-<li>Declared by bracket outside, comma delimited within.</li>
-<li>The order of the values in the list is remembered</li>
-<li>Is mutable = Can append/insert new values to the list, and remove values.</li>
-<li>As with all iterables in Python, the values in a list are indexed starting with 0.</li>
+<li><code>False</code></li>
+<li><code>None</code></li>
+<li>0 of any type, including 0, 0L, 0.0, 0j</li>
+<li>An empty sequence: &quot;&quot;, (), [], {}</li>
 </ul>
+<p>Any other value evaluates to <code>True</code>. More on this later.</p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[1]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;a dog&quot;</span><span class="p">]</span>
-<span class="n">a_list</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[1]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-[1, 2, 3, &apos;a dog&apos;]
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="and-or-and-not"><code>and</code>, <code>or</code>, and <code>not</code></h3>
+<p><code>and</code> and <code>or</code> are <a href="http://en.wikipedia.org/wiki/Binary_operation">binary operators</a>, meaning you slap them in between two truth values to make one value. <code>not</code> is a <a href="http://en.wikipedia.org/wiki/Unary_operation">unary operator</a> that negates the value after it.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1776,8 +1742,7 @@ In&nbsp;[1]:
 In&nbsp;[2]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s">&quot;Hi there!&quot;</span> <span class="p">)</span>
-<span class="n">a_list</span>
+<div class="highlight"><pre><span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>
 </pre></div>
 
 </div>
@@ -1793,7 +1758,7 @@ In&nbsp;[2]:
 
 
 <pre>
-[1, 2, 3, &apos;a dog&apos;, &apos;Hi there!&apos;]
+False
 </pre>
 
 </div>
@@ -1809,11 +1774,7 @@ In&nbsp;[2]:
 In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Use index notation ([]) to get at the nth thing in the list:</span>
-
-<span class="c"># Remove the third value in the list</span>
-<span class="k">del</span> <span class="n">a_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="c"># Remember, the count starts at 0</span>
-<span class="n">a_list</span>
+<div class="highlight"><pre><span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span>
 </pre></div>
 
 </div>
@@ -1829,216 +1790,11 @@ In&nbsp;[3]:
 
 
 <pre>
-[1, 2, &apos;a dog&apos;, &apos;Hi there!&apos;]
+True
 </pre>
 
 </div>
 </div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[4]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># A list can have one or zero values in it:</span>
-<span class="n">empty_list</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="nb">len</span><span class="p">(</span> <span class="n">empty_list</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[4]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-0
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[5]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">empty_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s">&quot;sumn&quot;</span> <span class="p">)</span>
-<span class="nb">len</span><span class="p">(</span> <span class="n">empty_list</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="tuples"><a name="tuples">Tuples</a></h2>
-<ul>
-<li>The name &quot;tuple&quot; comes from math concept, i.e., quadruple, quintuple, sextuple, ... n-tuple</li>
-<li>A tuple is just an immutable list: once you make it, you can't change it.</li>
-<li>The order of the values in the list is remembered.</li>
-<li>Usually declared by surrounding a comma-separated sequence with optional parentheses</li>
-<li>Declare a tuple with one value in it by suffixing the value with a comma</li>
-</ul>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_tuple</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;four&quot;</span>
-<span class="n">readable_tuple</span> <span class="o">=</span> <span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s">&quot;four&quot;</span> <span class="p">)</span> <span class="c"># Parentheses are optional</span>
-<span class="n">empty_tuple</span> <span class="o">=</span> <span class="p">()</span>
-<span class="n">tuple_with_one_item</span> <span class="o">=</span> <span class="s">&quot;an item&quot;</span><span class="p">,</span>
-<span class="nb">len</span><span class="p">(</span> <span class="n">tuple_with_one_item</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[8]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[9]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Index notation works for tuples too</span>
-<span class="n">a_tuple</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[9]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&apos;four&apos;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="dictionaries"><a name='dicts'>Dictionaries</a></h2>
-<ul>
-<li>A <code>dict</code> is associative array, where arbitrary &quot;keys&quot; are mapped to &quot;values.&quot;</li>
-<li><code>dict</code>s are called hashes in Perl and maps in C++.</li>
-<li>DOES NOT KEEP TRACK OF ORDER OF KEY-VALUE PAIRS
-<ul>
-<li>For that you need the type <code>collections.OrderedDict</code></li>
-</ul></li>
-<li>Declare using curly braces {}. The key-value pairs are separated by a colon :, delineated by commas.</li>
-<li>Declare empty dict with {}, or dict().</li>
-</ul>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[26]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_dict</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="nb">type</span><span class="p">(</span> <span class="n">a_dict</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[26]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-dict
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[16]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">&quot;key 1&quot;</span><span class="p">:</span><span class="s">&quot;value 1&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">:[</span><span class="s">&#39;a&#39;</span><span class="p">,</span><span class="s">&#39;list&#39;</span><span class="p">],</span> <span class="s">&quot;expects spanish inquisition&quot;</span><span class="p">:</span> <span class="bp">None</span><span class="p">}</span>
-</pre></div>
 
 </div>
 </div>
@@ -2050,8 +1806,8 @@ In&nbsp;[16]:
 In&nbsp;[20]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># To get a value out of a dict, put the key into the brackets:</span>
-<span class="k">print</span> <span class="n">a_dict</span><span class="p">[</span><span class="s">&#39;key 1&#39;</span><span class="p">],</span> <span class="s">&quot;,&quot;</span><span class="p">,</span> <span class="n">a_dict</span><span class="p">[</span><span class="s">&#39;expects spanish inquisition&#39;</span><span class="p">]</span>
+<div class="highlight"><pre><span class="n">my_bool_value</span> <span class="o">=</span> <span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>
+<span class="k">print</span> <span class="n">my_bool_value</span>
 </pre></div>
 
 </div>
@@ -2064,7 +1820,7 @@ In&nbsp;[20]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-value 1 , None
+False
 
 </pre>
 </div>
@@ -2077,11 +1833,10 @@ value 1 , None
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[22]:
+In&nbsp;[7]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Return a list of keys:</span>
-<span class="n">a_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<div class="highlight"><pre><span class="ow">not</span> <span class="bp">True</span>
 </pre></div>
 
 </div>
@@ -2092,209 +1847,12 @@ In&nbsp;[22]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[22]:</div>
+    Out[7]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[&apos;key 1&apos;, 2, &apos;expects spanish inquisition&apos;, 4]
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[23]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Return a list of values:</span>
-<span class="n">a_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[23]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-[&apos;value 1&apos;, 3, None, [&apos;a&apos;, &apos;list&apos;]]
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[25]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># dicts only go in one direction, i.e., you can&#39;t put in a value and get out a key.</span>
-<span class="c"># If you reference a key that&#39;s not there, a KeyError exception is raised:</span>
-<span class="n">a_dict</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-25-bd0e85181315&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansired"># dicts only go in one direction, i.e., you can&apos;t put in a value and get out a key.</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">      2</span> <span class="ansired"># If you reference a key that&apos;s not there, a KeyError exception is raised:</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">----&gt; 3</span><span class="ansired"> </span>a_dict<span class="ansiblue">[</span><span class="ansicyan">3</span><span class="ansiblue">]</span><span class="ansiblue"></span>
-
-<span class="ansired">KeyError</span>: 3</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="sets"><a name="sets">Sets</a></h2>
-<ul>
-<li>Similar to math concept of sets; has operations like union, intersection, etc.</li>
-<li>Sets are unindexed, unordered, and contains no duplicates.</li>
-<li>Is mutable, i.e., you can change what values are in the set, but the values inside the set are immutable.</li>
-<li>Immutable version of a set is a <code>frozenset</code></li>
-<li>Declare a set by putting values inside braces: <code>{'set', 'of', 'words'}</code></li>
-<li><code>set()</code> = empty set</li>
-<li>My personal favorite of the Python standard types!</li>
-</ul>
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_set</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="p">(),</span> <span class="bp">False</span><span class="p">}</span>
-<span class="nb">type</span><span class="p">(</span> <span class="n">some_set</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[10]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-set
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[30]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">empty_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c"># not {}, that would be an empty dict</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[28]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Here are two sets with one common value, 42.</span>
-<span class="n">set1</span> <span class="o">=</span> <span class="p">{</span><span class="mi">12</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">78</span><span class="p">,</span><span class="mi">90</span><span class="p">,</span><span class="mi">42</span><span class="p">}</span>
-<span class="n">set2</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">23</span><span class="p">,</span><span class="mi">45</span><span class="p">,</span><span class="mi">67</span><span class="p">,</span><span class="mi">89</span><span class="p">,</span><span class="mi">42</span><span class="p">}</span>
-<span class="n">set3</span> <span class="o">=</span> <span class="n">set1</span> <span class="o">|</span> <span class="n">set2</span> <span class="c"># The pipe operator returns the union of the two sets</span>
-<span class="n">set3</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[28]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-{1, 12, 23, 34, 42, 45, 56, 67, 78, 89, 90}
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[29]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># The ampersand operator returns the intersection of the two sets</span>
-<span class="n">set4</span> <span class="o">=</span> <span class="n">set1</span> <span class="o">&amp;</span> <span class="n">set2</span>
-<span class="n">set4</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[29]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-{42}
+False
 </pre>
 
 </div>
@@ -2305,22 +1863,42 @@ In&nbsp;[29]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="strings"><a name="strings">Strings</a></h2>
-<p>A review from last class:</p>
-<ul>
-<li>Like a tuple of chararcters</li>
-<li>Are immutable</li>
-<li>Concatenate them with a +</li>
-<li>Delineate by surrounding with single ('hi'), double (&quot;hi&quot;), or triple-double quotes (&quot;&quot;&quot;hi&quot;&quot;&quot;). You decide which to use based on what's required in the given context.</li>
-<li>Escape characters use a backslash followed by a single letter
-<ul>
-<li>'\n' - a newline character</li>
-<li>'\t' - a tab character</li>
-<li>'\\' - a backslash character (escape the escape character)</li>
-<li>&quot;\&quot;&quot; - a single quote (but why wouldn't you just use '&quot;'?</li>
-<li>Escape characters not recognized when using triple double quotes, or by prefacing the string with the letter r</li>
-</ul></li>
-</ul>
+<h3 id="order-of-operations">Order of Operations</h3>
+<p>In Python there is an <a href="http://docs.python.org/2/reference/expressions.html#operator-precedence">order of operations</a>, so some operators are evaluated before others. Operations of equivalent precedence are evaluated left to right. Use parentheses to clarify boolean expressions. <code>and</code> and <code>or</code> are <a href="http://en.wikipedia.org/wiki/Short-circuit_evaluation">short-circuit operators</a>, which means that &quot;the second argument is executed or evaluated only if the first argument does not suffice to determine the value of the expression.&quot;</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[32]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># &quot;and&quot; has a higher order of precedence than &quot;or&quot;, so the following</span>
+<span class="c"># expression is equivalent to &quot;False or (True and False)&quot;</span>
+<span class="bp">False</span> <span class="ow">or</span> <span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[32]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+False
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2328,8 +1906,9 @@ In&nbsp;[29]:
 In&nbsp;[33]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_escape_chars</span> <span class="o">=</span> <span class="s">&#39;line one</span><span class="se">\n</span><span class="s">line two&#39;</span>
-<span class="k">print</span> <span class="n">some_escape_chars</span>
+<div class="highlight"><pre><span class="c"># Again, the &quot;and&quot; part is evaluated before the &quot;or&quot; part so the</span>
+<span class="c"># following expression is equivalent to &quot;True or (False and True)&quot;</span>
+<span class="bp">True</span> <span class="ow">or</span> <span class="bp">False</span> <span class="ow">and</span> <span class="bp">True</span>
 </pre></div>
 
 </div>
@@ -2339,13 +1918,15 @@ In&nbsp;[33]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-line one
-line two
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[33]:</div>
+<div class="box-flex1 output_subarea output_pyout">
 
+
+<pre>
+True
 </pre>
+
 </div>
 </div>
 
@@ -2356,16 +1937,11 @@ line two
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[34]:
+In&nbsp;[40]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># triple double quotes capture the newlines</span>
-<span class="n">no_need_for_escape_chars</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot; hello</span>
-<span class="s">what&#39;s up? nuttin&#39;</span>
-<span class="s">&quot;whatchu say to me?&quot;</span>
-<span class="s">word.</span>
-<span class="s">here are some backslashes: \ </span><span class="se">\\</span><span class="s"> </span><span class="se">\\</span><span class="s">\ </span><span class="se">\\\\</span><span class="s">&quot;&quot;&quot;</span>
-<span class="k">print</span> <span class="n">no_need_for_escape_chars</span>
+<div class="highlight"><pre><span class="c"># &quot;not&quot; has higher precedence than either and or or.</span>
+<span class="ow">not</span> <span class="bp">False</span> <span class="ow">and</span> <span class="bp">True</span>
 </pre></div>
 
 </div>
@@ -2375,16 +1951,86 @@ In&nbsp;[34]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
- hello
-what&apos;s up? nuttin&apos;
-&quot;whatchu say to me?&quot;
-word.
-here are some backslashes: \ \ \\ \\
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[40]:</div>
+<div class="box-flex1 output_subarea output_pyout">
 
+
+<pre>
+True
 </pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[37]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Here the operators have the same precedence, so the short-circuit</span>
+<span class="c"># kicks in and only the first pair of values are evaluated</span>
+<span class="bp">True</span> <span class="ow">and</span> <span class="bp">False</span> <span class="ow">and</span> <span class="bp">True</span> <span class="ow">and</span> <span class="bp">True</span> <span class="ow">and</span> <span class="bp">True</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[37]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+False
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="any-and-all"><code>any()</code> and <code>all()</code></h3>
+<p>If you need to chain lots of booleans together, use the built-in Python functions <a href="http://docs.python.org/2/library/functions.html#any"><code>any()</code></a> or <a href="http://docs.python.org/2/library/functions.html#all"><code>all()</code></a></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[35]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Equivalent to &quot;True or False or True or False or True&quot;</span>
+<span class="nb">any</span><span class="p">(</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span> <span class="p">]</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[35]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
 </div>
 </div>
 
@@ -2398,71 +2044,8 @@ here are some backslashes: \ \ \\ \\
 In&nbsp;[36]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_rawstring</span> <span class="o">=</span> <span class="s">r&quot;Are you\ sure</span><span class="se">\\</span><span class="s"> we \need all these\ backslashes?&quot;</span>
-<span class="k">print</span> <span class="n">a_rawstring</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Are you\ sure\\ we \need all these\ backslashes?
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[38]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Now the same string without the r preceeding it:</span>
-<span class="n">not_rawstring</span> <span class="o">=</span> <span class="s">&quot;Are you\ sure</span><span class="se">\\</span><span class="s"> we </span><span class="se">\n</span><span class="s">eed all </span><span class="se">\t</span><span class="s">hese\ backslashes?&quot;</span>
-<span class="k">print</span> <span class="n">not_rawstring</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Are you\ sure\ we 
-eed all 	hese\ backslashes?
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[70]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">n</span> <span class="o">=</span> <span class="s">&quot;hello&quot;</span>
-<span class="n">echo</span> <span class="o">=</span> <span class="n">n</span> <span class="o">*</span> <span class="mi">5</span> <span class="c"># Repeat the string 5 times</span>
-<span class="n">echo</span>
+<div class="highlight"><pre><span class="c"># Equivalent to &quot;True and False and True and False and True&quot;</span>
+<span class="nb">all</span><span class="p">(</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span> <span class="p">]</span> <span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2473,12 +2056,12 @@ In&nbsp;[70]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[70]:</div>
+    Out[36]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&apos;hellohellohellohellohello&apos;
+False
 </pre>
 
 </div>
@@ -2488,17 +2071,30 @@ In&nbsp;[70]:
 </div>
 
 </div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="comparison-operators">Comparison operators</h3>
+<p>All of the following have the same order of precedence:</p>
+<ul>
+<li><code>in</code></li>
+<li><code>not in</code></li>
+<li><code>&lt;</code></li>
+<li><code>&lt;=</code></li>
+<li><code>&gt;</code></li>
+<li><code>&gt;=</code></li>
+<li><code>&lt;&gt;</code> or <code>!=</code> (equivalent)</li>
+<li><code>==</code></li>
+<li><code>is</code></li>
+<li><code>is not</code></li>
+</ul>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
 In&nbsp;[41]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Concatenate with +</span>
-<span class="n">boast</span> <span class="o">=</span> <span class="s">&quot;I am the very model of a &quot;</span>
-<span class="n">occupation</span> <span class="o">=</span> <span class="s">&quot;modern major general.&quot;</span>
-<span class="n">a_string</span> <span class="o">=</span> <span class="n">boast</span> <span class="o">+</span> <span class="n">occupation</span>
-<span class="n">a_string</span>
+<div class="highlight"><pre><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">34</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="mi">78</span><span class="p">,</span><span class="mi">90</span><span class="p">]</span>
+<span class="mi">90</span> <span class="ow">in</span> <span class="n">list1</span>
 </pre></div>
 
 </div>
@@ -2514,7 +2110,7 @@ In&nbsp;[41]:
 
 
 <pre>
-&apos;I am the very model of a modern major general.&apos;
+True
 </pre>
 
 </div>
@@ -2530,9 +2126,7 @@ In&nbsp;[41]:
 In&nbsp;[42]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># To concatenate strings, everything must already be a string</span>
-<span class="c"># See the problem here?</span>
-<span class="n">profound_statement</span> <span class="o">=</span> <span class="s">&quot;The answer to life, the universe, and everything is &quot;</span> <span class="o">+</span> <span class="mi">42</span>
+<div class="highlight"><pre><span class="mi">91</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">list1</span>
 </pre></div>
 
 </div>
@@ -2542,17 +2136,15 @@ In&nbsp;[42]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-42-b2f14b3f668f&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansired"># To concatenate strings, everything must already be a string</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">      2</span> <span class="ansired"># See the problem here?</span><span class="ansiblue"></span><span class="ansiblue"></span>
-<span class="ansigreen">----&gt; 3</span><span class="ansired"> </span>profound_statement <span class="ansiblue">=</span> <span class="ansiblue">&quot;The answer to life, the universe, and everything is &quot;</span> <span class="ansiblue">+</span> <span class="ansicyan">42</span><span class="ansiblue"></span>
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[42]:</div>
+<div class="box-flex1 output_subarea output_pyout">
 
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;int&apos; objects</pre>
+
+<pre>
+True
+</pre>
+
 </div>
 </div>
 
@@ -2566,9 +2158,10 @@ In&nbsp;[42]:
 In&nbsp;[44]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Try converting the value to a string</span>
-<span class="n">profound_statement</span> <span class="o">=</span> <span class="s">&quot;The answer to life, the universe, and everything is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">profound_statement</span>
+<div class="highlight"><pre><span class="c"># in and not in also work for testing if a string contains part</span>
+<span class="c"># of another string:</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s">&quot;Chris Coletta&quot;</span>
+<span class="s">&quot;Chris&quot;</span> <span class="ow">in</span> <span class="n">name</span>
 </pre></div>
 
 </div>
@@ -2584,7 +2177,39 @@ In&nbsp;[44]:
 
 
 <pre>
-&apos;The answer to life, the universe, and everything is 42&apos;
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[45]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="s">&quot;Christopher&quot;</span> <span class="ow">in</span> <span class="n">name</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[45]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+False
 </pre>
 
 </div>
@@ -2600,10 +2225,11 @@ In&nbsp;[44]:
 In&nbsp;[46]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Either that, or embed the value into the string using the curly braces and the format function</span>
-<span class="n">profound_statement</span> <span class="o">=</span> <span class="s">&quot;The answer to life, the universe, and everything is {}&quot;</span>
-<span class="n">full_statement</span> <span class="o">=</span> <span class="n">profound_statement</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
-<span class="n">full_statement</span>
+<div class="highlight"><pre><span class="c"># In the context of a dict in and not in refer to the keys </span>
+<span class="c"># of the dict, not the values:</span>
+<span class="n">person_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;f_name&#39;</span> <span class="p">:</span> <span class="s">&#39;Chris&#39;</span><span class="p">,</span> <span class="s">&#39;l_name&#39;</span> <span class="p">:</span> <span class="s">&#39;Coletta&#39;</span><span class="p">,</span> \
+             <span class="s">&#39;favorite program&#39;</span> <span class="p">:</span> <span class="s">&#39;Star Trek&#39;</span> <span class="p">}</span>
+<span class="s">&#39;f_name&#39;</span> <span class="ow">in</span> <span class="n">person_dict</span>
 </pre></div>
 
 </div>
@@ -2619,7 +2245,7 @@ In&nbsp;[46]:
 
 
 <pre>
-&apos;The answer to life, the universe, and everything is 42&apos;
+True
 </pre>
 
 </div>
@@ -2629,16 +2255,14 @@ In&nbsp;[46]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>See how in that last one you can't change the value of the string in <code>profound_statement</code>. See, it's still the same as when you first declared it, because strings are immutable:</p>
-</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
 In&nbsp;[47]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">profound_statement</span>
+<div class="highlight"><pre><span class="c"># But:</span>
+<span class="s">&#39;Chris&#39;</span> <span class="ow">in</span> <span class="n">person_dict</span>
 </pre></div>
 
 </div>
@@ -2654,7 +2278,7 @@ In&nbsp;[47]:
 
 
 <pre>
-&apos;The answer to life, the universe, and everything is {}&apos;
+False
 </pre>
 
 </div>
@@ -2667,11 +2291,10 @@ In&nbsp;[47]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[51]:
+In&nbsp;[48]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Return a substring using a brackets separated by a colon</span>
-<span class="n">full_statement</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">22</span><span class="p">]</span>
+<div class="highlight"><pre><span class="mi">5</span><span class="o">&lt;</span><span class="mi">4</span>
 </pre></div>
 
 </div>
@@ -2682,14 +2305,333 @@ In&nbsp;[51]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[51]:</div>
+    Out[48]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&apos; answer to life, th&apos;
+False
 </pre>
 
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[49]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="mi">45</span> <span class="o">&gt;=</span> <span class="mi">45</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[49]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[50]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Arithmetic operators have higher precedence than comparisons:</span>
+<span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">!=</span> <span class="mi">5</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[50]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="identity-tests-is-and-is-not">Identity tests: <code>is</code> and <code>is not</code></h3>
+<p>The operators <code>is</code> and <code>is not</code> are even stricter than <code>==</code> and <code>!=</code>. <code>is</code> returns <code>True</code> if and only if the two values are <strong>bound to the same object</strong>, not just have the same value.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">t1</span> <span class="o">=</span> <span class="n">t2</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">t3</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">t1</span> <span class="ow">is</span> <span class="n">t2</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[9]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[10]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">t1</span> <span class="ow">is</span> <span class="n">t3</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[10]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[14]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">name1</span> <span class="o">=</span> <span class="mi">43</span>
+<span class="n">name2</span> <span class="o">=</span> <span class="mi">43</span>
+<span class="n">name1</span> <span class="ow">is</span> <span class="n">name2</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[14]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the built in Python function <code>id()</code> to ascertain if a name points to the same object. The return value of the function is an id number that is used internally in Python.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">name1</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">name2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+4298189072 4298189072
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you create two empty lists you get two different objects, so <code>is</code> returns False (and therefore <code>is not</code> returns True).</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">]</span>
+<span class="n">list1</span> <span class="ow">is</span> <span class="n">list2</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[16]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+False
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># the ids of the two lists are different</span>
+<span class="k">print</span> <span class="nb">id</span><span class="p">(</span><span class="n">list1</span><span class="p">),</span> <span class="nb">id</span><span class="p">(</span><span class="n">list2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+4329745368 4329758448
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="conditional-statements"><a name="conditional">Conditional Statements</a></h2>
+<p>Most times you'll write conditional statements on multiple lines, which means you'll have to indent any statements that you want to be evaluated only if the condition is true.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[51]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Simple conditional</span>
+<span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;True fact.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;Yup.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;This line prints regardless.&quot;</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+True fact.
+Yup.
+This line prints regardless.
+
+</pre>
 </div>
 </div>
 
@@ -2703,9 +2645,13 @@ In&nbsp;[51]:
 In&nbsp;[52]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Just because you just returned a substring from a string</span>
-<span class="c"># doesn&#39;t mean you changed the original string. </span>
-<span class="n">full_statement</span>
+<div class="highlight"><pre><span class="c"># One alternative conditional</span>
+<span class="k">if</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;True fact.&quot;</span>
+    <span class="k">print</span> <span class="s">&quot;Yup.&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;This ain&#39;t gonna print.&quot;</span>
+<span class="k">print</span> <span class="s">&quot;This line prints regardless.&quot;</span>
 </pre></div>
 
 </div>
@@ -2715,15 +2661,14 @@ In&nbsp;[52]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[52]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-&apos;The answer to life, the universe, and everything is 42&apos;
-</pre>
+True fact.
+Yup.
+This line prints regardless.
 
+</pre>
 </div>
 </div>
 
@@ -2734,11 +2679,20 @@ In&nbsp;[52]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[72]:
+In&nbsp;[55]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># [begin index:end index:step]</span>
-<span class="n">full_statement</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">32</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="c"># take every 3rd letter</span>
+<div class="highlight"><pre><span class="c"># Multi-test conditional</span>
+<span class="n">person</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;name&#39;</span> <span class="p">:</span> <span class="s">&#39;R2D2&#39;</span><span class="p">,</span> <span class="s">&#39;species&#39;</span> <span class="p">:</span> <span class="s">&#39;droid&#39;</span> <span class="p">}</span>
+
+<span class="k">if</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;species&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="s">&#39;human&#39;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Welcome to the Mos Eisley Cantina,&quot;</span><span class="p">,</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;species&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="s">&#39;wookie&#39;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;AAAAARRRRRAAGGHHARRAAAGHHHARA,&quot;</span><span class="p">,</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+<span class="k">elif</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;species&#39;</span><span class="p">]</span> <span class="ow">is</span> <span class="s">&#39;droid&#39;</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;We don&#39;t serve your kind in here,&quot;</span><span class="p">,</span> <span class="n">person</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">]</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;What kind of lifeform are you??&quot;</span>
 </pre></div>
 
 </div>
@@ -2748,146 +2702,12 @@ In&nbsp;[72]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[72]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-&apos; sroi,huvs&apos;
+We don&apos;t serve your kind in here, R2D2
+
 </pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[76]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Leave the index blank to default to the beginning or end of the string</span>
-<span class="n">full_statement</span><span class="p">[:</span><span class="mi">25</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[76]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&apos;The answer to life, the u&apos;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[77]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">full_statement</span><span class="p">[</span><span class="mi">25</span><span class="p">:]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[77]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&apos;niverse, and everything is 42&apos;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[78]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># If i is negative, index is relative to end of string</span>
-<span class="n">full_statement</span><span class="p">[</span><span class="o">-</span><span class="mi">25</span><span class="p">:]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[78]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&apos;rse, and everything is 42&apos;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[73]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># Reverse a string by using a negative step value</span>
-<span class="s">&quot;a man, a plan, a canal, panama&quot;</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[73]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&apos;amanap ,lanac a ,nalp a ,nam a&apos;
-</pre>
-
 </div>
 </div>
 
@@ -2896,13 +2716,44 @@ In&nbsp;[73]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Don't forget the bracket-colon slicing syntax works for plain old lists too, not just strings!</p>
+<p>If you want Python to do nothing if the condition is true, you can't just leave a blank line, you have to use the keyword <code>pass</code>, properly indented.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[58]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">planet_earth</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&#39;population&#39;</span> <span class="p">:</span> <span class="mf">6e9</span><span class="p">,</span> <span class="s">&#39;color&#39;</span> <span class="p">:</span> <span class="s">&#39;blue&#39;</span> <span class="p">}</span>
+
+<span class="c"># There&#39;s nothing I can do...</span>
+<span class="k">if</span> <span class="n">planet_earth</span><span class="p">[</span><span class="s">&#39;color&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;blue&#39;</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Floating in my tin can.&quot;</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[60]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># You can put the single conditionals on one line if you want, but why?</span>
+<span class="k">if</span> <span class="s">&#39;man&#39;</span> <span class="ow">is</span> <span class="mi">5</span><span class="p">:</span> <span class="n">the_devil</span> <span class="o">=</span> <span class="mi">6</span>
+</pre></div>
+
+</div>
+</div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="iterables-of-iterables"><a name="compound">Iterables of Iterables</a></h2>
-<ul>
-<li>It's fine as long as you don't violate the mutable rules</li>
-</ul>
+<h3 id="ternary-operator">Ternary operator</h3>
+<p>You can use the ternary syntax to put one-alternitive conditionals all on one line (but again, why?). Ternary operators are expressions that take the form &quot;<em>value-if-true</em> <code>if</code> <em>condition</em> <code>else</code> <em>value-if-false</em>&quot;.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2910,10 +2761,9 @@ In&nbsp;[73]:
 In&nbsp;[62]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
-<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>
-<span class="n">tuple1</span> <span class="o">=</span> <span class="n">list1</span><span class="p">,</span> <span class="n">list2</span>
-<span class="n">tuple1</span>
+<div class="highlight"><pre><span class="n">hands</span> <span class="o">=</span> <span class="s">&#39;down&#39;</span>
+<span class="n">plans_tonight</span> <span class="o">=</span> <span class="s">&#39;party in the usa&#39;</span> <span class="k">if</span> <span class="n">hands</span> <span class="o">==</span> <span class="s">&#39;up&#39;</span> <span class="k">else</span> <span class="s">&#39;walk 500 miles.&#39;</span>
+<span class="n">plans_tonight</span>
 </pre></div>
 
 </div>
@@ -2929,76 +2779,7 @@ In&nbsp;[62]:
 
 
 <pre>
-([1, 2, 3, 4, 5], [6, 7, 8, 9, 10])
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[63]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># I guess this is legal:</span>
-<span class="n">tuple1</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span> <span class="c"># compound index notation</span>
-<span class="n">tuple1</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[63]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-([99, 2, 3, 4, 5], [6, 7, 8, 9, 10])
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[64]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;list1&#39;</span><span class="p">:</span> <span class="n">list1</span><span class="p">,</span> <span class="s">&#39;list2&#39;</span><span class="p">:</span> <span class="n">list2</span><span class="p">}</span>
-<span class="n">dict1</span><span class="p">[</span><span class="s">&#39;list2&#39;</span><span class="p">][</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="mi">66</span>
-<span class="n">dict1</span><span class="p">[</span><span class="s">&#39;list1&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="mi">555</span> <span class="p">)</span>
-<span class="n">dict1</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[64]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-{&apos;list1&apos;: [99, 2, 3, 4, 5, 555], &apos;list2&apos;: [6, 7, 8, 9, 66]}
+&apos;walk 500 miles.&apos;
 </pre>
 
 </div>
@@ -3009,10 +2790,8 @@ In&nbsp;[64]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="shallow-copy-vs.-deep-copy"><a name="deep">Shallow copy vs. deep copy</a></h2>
-<ul>
-<li>Values that are composed of other values change when the original values change.</li>
-</ul>
+<h2 id="while-loops"><a name="while"><code>while</code> loops</a></h2>
+<p>A while loop evaluates a boolean expression and does the code in the loop over and over as long as the expression evaluates to true.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3020,10 +2799,12 @@ In&nbsp;[64]:
 In&nbsp;[65]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># list1 is in dict1. You change one, you change the other:</span>
-<span class="n">list1</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
-<span class="n">dict1</span>
-<span class="c"># see? The value 3 is now gone from the dict too.</span>
+<div class="highlight"><pre><span class="n">age</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="k">while</span> <span class="n">age</span> <span class="o">&lt;</span> <span class="mi">21</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;No beer, you {}-year-old, wait until next year.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+    <span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span> <span class="s">&quot;You&#39;re 21, it&#39;s party time!&quot;</span>
 </pre></div>
 
 </div>
@@ -3033,21 +2814,27 @@ In&nbsp;[65]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[65]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-{&apos;list1&apos;: [99, 2, 4, 5, 555], &apos;list2&apos;: [6, 7, 8, 9, 66]}
+No beer, you 15-year-old, wait until next year.
+No beer, you 16-year-old, wait until next year.
+No beer, you 17-year-old, wait until next year.
+No beer, you 18-year-old, wait until next year.
+No beer, you 19-year-old, wait until next year.
+No beer, you 20-year-old, wait until next year.
+You&apos;re 21, it&apos;s party time!
+
 </pre>
-
 </div>
 </div>
 
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Another way to structure a while loop is to &quot;loop forever&quot; and use a conditional statement with the <code>break</code> keyword.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3055,10 +2842,15 @@ In&nbsp;[65]:
 In&nbsp;[66]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="c"># give list1 an alias</span>
-<span class="n">the_same_damn_list</span> <span class="o">=</span> <span class="n">list1</span>
-<span class="n">the_same_damn_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s">&#39;NEE!&#39;</span> <span class="p">)</span>
-<span class="n">list1</span>
+<div class="highlight"><pre><span class="n">age</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="c"># loop forever</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">age</span> <span class="o">&gt;=</span> <span class="mi">21</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">print</span> <span class="s">&quot;No beer, you {}-year-old, wait until next year.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+    <span class="n">age</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span> <span class="s">&quot;You&#39;re 21, it&#39;s party time!&quot;</span>
 </pre></div>
 
 </div>
@@ -3068,15 +2860,18 @@ In&nbsp;[66]:
 <div class="output vbox">
 
 
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[66]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-[99, 2, 4, 5, 555, &apos;NEE!&apos;]
-</pre>
+No beer, you 15-year-old, wait until next year.
+No beer, you 16-year-old, wait until next year.
+No beer, you 17-year-old, wait until next year.
+No beer, you 18-year-old, wait until next year.
+No beer, you 19-year-old, wait until next year.
+No beer, you 20-year-old, wait until next year.
+You&apos;re 21, it&apos;s party time!
 
+</pre>
 </div>
 </div>
 
@@ -3085,17 +2880,19 @@ In&nbsp;[66]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here, <code>the_same_damn_list</code> is just a shallow copy of <code>list1</code>. To make a deep copy of a list, use <code>[:]</code>:</p>
+<h2 id="for-loops"><a name="for"><code>for</code> loops</a></h2>
+<ul>
+<li>&quot;Python’s <code>for</code> statement iterates over the items of any sequence (a list or a string), in the order that they appear in the sequence.&quot; <a href="http://docs.python.org/2/tutorial/controlflow.html">reference</a>. Often times if you know exactly how many times you need to loop, you'll use the <code>range()</code> function, which returns a list of numbers for the for loop to iterate over. Each time through the loop, Python with put the next item in the sequence into the variable whose name you declare by putting it between the <code>for</code> and <code>in</code> keywords.</li>
+</ul>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[67]:
+In&nbsp;[70]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">a_separate_list</span> <span class="o">=</span> <span class="n">list2</span><span class="p">[:]</span>
-<span class="n">a_separate_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="s">&#39;I blow my nose at you!&#39;</span> <span class="p">)</span>
-<span class="n">list2</span>
+<div class="highlight"><pre><span class="c"># range counts from 0</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3106,12 +2903,12 @@ In&nbsp;[67]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[67]:</div>
+    Out[70]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[6, 7, 8, 9, 66]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 </pre>
 
 </div>
@@ -3121,37 +2918,457 @@ In&nbsp;[67]:
 </div>
 
 </div>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="using-iterables"><a name="using">Using iterables</a></h2>
-<p>LEARN EVERYTHING ON THIS PAGE: <a href="http://docs.python.org/2/library/stdtypes.html">Standard types</a></p>
-<h3 id="iterable-stuff-to-try-on-your-own">Iterable stuff to try on your own:</h3>
-<ul>
-<li><code>x in s</code> - The keyword <code>in</code>. A boolean expression to test if the value or substring x is in iterable s.</li>
-<li><code>x not in s</code> - Opposite of <code>in</code>.</li>
-<li><code>s + ',' + t ',' + u</code> - string concatenation
-<ul>
-<li>See also the less computationally expensive <code>','.join(s,t,u)</code></li>
-</ul></li>
-<li><code>len(s)</code> - length of iterable</li>
-<li><code>min(s)</code></li>
-<li><code>max(s)</code></li>
-<li><code>s.index(i)</code> - index of first occurrence of i in s</li>
-<li><code>s.count(i)</code> - total number of occurrences of i in s</li>
-<li><code>list.append(item)</code></li>
-<li>list.extend( another_list )</li>
-<li>list.insert( position_index, value )</li>
-<li>list.remove( value ) - removes first instance of value from list</li>
-<li>list.pop() - remove last item from list and return it</li>
-<li>list.pop(i) - remove the ith item in the list and return it</li>
-<li>list.count( value ) - The number of times value appears in list</li>
-<li>list.reverse()</li>
-<li>del</li>
-<li>sort( iterable )</li>
-<li>truth value testing : all(), any()</li>
-</ul>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[69]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;st&#39;</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;nd&#39;</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;rd&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">suffix</span> <span class="o">=</span> <span class="s">&#39;th&#39;</span>
+    <span class="k">print</span> <span class="s">&quot;This is the {}{} time through the for loop.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">suffix</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+This is the 0th time through the for loop.
+This is the 1st time through the for loop.
+This is the 2nd time through the for loop.
+This is the 3rd time through the for loop.
+This is the 4th time through the for loop.
+This is the 5th time through the for loop.
+This is the 6th time through the for loop.
+This is the 7th time through the for loop.
+This is the 8th time through the for loop.
+This is the 9th time through the for loop.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[72]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">name_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;dick&#39;</span><span class="p">,</span> <span class="s">&#39;jane&#39;</span><span class="p">,</span> <span class="s">&#39;spot&#39;</span><span class="p">,</span> <span class="s">&#39;mom&#39;</span><span class="p">,</span> <span class="s">&#39;dad&#39;</span> <span class="p">]</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">name_list</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;see {} run!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">name</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+see dick run!
+see jane run!
+see spot run!
+see mom run!
+see dad run!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now, move on to Class 3, Part 2: Control Flow - <a href="BIOF309_ControlFlow.html">HTML</a> - <a href="BIOF309_ControlFlow.ipynb">IPython Notebook</a></p>
+<p>Use the function <code>enumerate()</code> if you need to slap an index onto an iterable you already have. Each time through the loop <code>enumerate()</code> returns a tuple of two values, the first being the index, and the second being the value. See how you can unpack the tuple right inside the for loop:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[74]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span> <span class="n">name_list</span> <span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Line {}: See {} run!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Line 0: See dick run!
+Line 1: See jane run!
+Line 2: See spot run!
+Line 3: See mom run!
+Line 4: See dad run!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The code in above cell is quivalent to zipping together a range of indices with an iterable:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[75]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">num_names</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span> <span class="n">name_list</span> <span class="p">)</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span> <span class="n">num_names</span> <span class="p">)</span>
+<span class="n">zipped_together</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span> <span class="n">indices</span><span class="p">,</span> <span class="n">name_list</span> <span class="p">)</span>
+<span class="k">print</span> <span class="n">zipped_together</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+[(0, &apos;dick&apos;), (1, &apos;jane&apos;), (2, &apos;spot&apos;), (3, &apos;mom&apos;), (4, &apos;dad&apos;)]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[76]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">zipped_together</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Line {}: See {} run!&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">index</span><span class="p">,</span> <span class="n">name</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Line 0: See dick run!
+Line 1: See jane run!
+Line 2: See spot run!
+Line 3: See mom run!
+Line 4: See dad run!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can prematurely end iteration of a for loop using the <code>break</code> keyword as shown in the <code>while</code> loop example above. You can also have the iteration skip over executing all or part of the code in a single iteration by using the <code>continue</code> keyword.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[93]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Only process odd numbers:</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="c"># Remember, % operator is for modulus (remainder) division</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">continue</span>
+    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="s">&quot;is odd.&quot;</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+1 is odd.
+3 is odd.
+5 is odd.
+7 is odd.
+9 is odd.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exception-handling"><a name="exceptions">Exception handling</a></h2>
+<p>Another way to control the flow of a program is to gracefully handle any errors that can come up in the course of executing a program. More info on this is available <a href="http://docs.python.org/2/tutorial/errors.html">here</a>.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="syntax-errors">Syntax errors</h3>
+<p>Python raises a SyntaxError of the code you typed in is wrong. Pretty straight forward - just fix the code.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[77]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">blahbedeeblah</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">NameError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-77-491ee2b9f9bb&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span><span class="ansigreen">print</span> blahbedeeblah<span class="ansiblue"></span>
+
+<span class="ansired">NameError</span>: name &apos;blahbedeeblah&apos; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="exceptions">Exceptions</h3>
+<p>As it says in the docs, &quot;even if a statement or expression is syntactically correct, it may cause an error when an attempt is made to execute it.&quot; (Learn about all the different types of exceptions <a href="http://docs.python.org/2/library/exceptions.html">here</a>). You can safeguard yourself by putting risky code inside a try-except block:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[84]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Some risky code (raises a ZeroDivisionError exception)</span>
+<span class="mi">10</span><span class="o">/</span><span class="mi">0</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">ZeroDivisionError</span>                         Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-84-8fb125fc27fc&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># Some risky code (raises a ZeroDivisionError exception)</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span><span class="ansicyan">10</span><span class="ansiblue">/</span><span class="ansicyan">0</span><span class="ansiblue"></span>
+
+<span class="ansired">ZeroDivisionError</span>: integer division or modulo by zero</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[82]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">sequence</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;{val}: 10 / {val} = {quot:0.2f} &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">val</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">quot</span><span class="o">=</span><span class="mf">10.0</span><span class="o">/</span><span class="n">value</span> <span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;0: (can&#39;t divide by 0)&quot;</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+0: (can&apos;t divide by 0)
+1: 10 / 1 = 10.00 
+2: 10 / 2 = 5.00 
+3: 10 / 3 = 3.33 
+4: 10 / 4 = 2.50 
+5: 10 / 5 = 2.00 
+6: 10 / 6 = 1.67 
+7: 10 / 7 = 1.43 
+8: 10 / 8 = 1.25 
+9: 10 / 9 = 1.11 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can have different types of exceptions handled in different ways by specifying the type of exception in the <code>except</code> clause:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[88]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;liftoff&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;{val}: 10 / {val} = {quot:0.2f} &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">val</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">quot</span><span class="o">=</span><span class="mf">10.0</span><span class="o">/</span><span class="n">value</span> <span class="p">)</span>
+    <span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;0: (can&#39;t divide by 0)&quot;</span>
+    <span class="c"># The details of the error can be captured if you use the </span>
+    <span class="c"># &quot;as&quot; keyword like so:</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Uh oh. Type problem:&quot;</span><span class="p">,</span> <span class="n">e</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+5: 10 / 5 = 2.00 
+4: 10 / 4 = 2.50 
+3: 10 / 3 = 3.33 
+2: 10 / 2 = 5.00 
+1: 10 / 1 = 10.00 
+0: (can&apos;t divide by 0)
+Uh oh. Type problem: unsupported operand type(s) for /: &apos;float&apos; and &apos;str&apos;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use the keyword <code>finally</code> as part of the try-except block to define a &quot;clean-up action&quot;:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[91]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">sequence</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s">&#39;liftoff&#39;</span><span class="p">]</span>
+<span class="n">calculation_count</span> <span class="o">=</span> <span class="mi">0</span> 
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">sequence</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;{val}: 10 / {val} = {quot:0.2f} &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="n">val</span><span class="o">=</span><span class="n">value</span><span class="p">,</span> <span class="n">quot</span><span class="o">=</span><span class="mf">10.0</span><span class="o">/</span><span class="n">value</span> <span class="p">)</span>
+        <span class="n">calculation_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">except</span> <span class="ne">ZeroDivisionError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Can&#39;t divide by 0. Bail out of for loop.&quot;</span>
+<span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s">&quot;Type problem. Bail out of for loop.&quot;</span>
+<span class="k">finally</span><span class="p">:</span>
+    <span class="c"># Statements in this clause execute last regardless if an</span>
+    <span class="c"># error ocurred or not.</span>
+    <span class="k">print</span> <span class="s">&quot;Out of {} items in sequence, {} calculations were performed.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="nb">len</span><span class="p">(</span> <span class="n">sequence</span> <span class="p">),</span> <span class="n">calculation_count</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+5: 10 / 5 = 2.00 
+4: 10 / 4 = 2.50 
+3: 10 / 3 = 3.33 
+2: 10 / 2 = 5.00 
+1: 10 / 1 = 10.00 
+Can&apos;t divide by 0. Bail out of for loop.
+Out of 7 items in sequence, 5 calculations were performed.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 </body>
 </html>
