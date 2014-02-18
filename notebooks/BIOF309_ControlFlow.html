@@ -3148,6 +3148,196 @@ In&nbsp;[93]:
 
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>The range function can start and stop at different numbers, and count by different step values. Se how if you give a start and a stop value, the start value is <strong>inclusive</strong> and the stop value is <strong>exclusive</strong>:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[13]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Gives numbers 1-12</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[13]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[15]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[15]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[-5, -4, -3, -2, -1, 0, 1, 2, 3]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Count backwards</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[16]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0, -1, -2, -3, -4]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># the range function only works with integers, though:</span>
+<span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-18-88903596827c&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># the range function only works with integers, though:</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span>range<span class="ansiblue">(</span><span class="ansicyan">10</span><span class="ansiblue">,</span><span class="ansicyan">20</span><span class="ansiblue">,</span><span class="ansicyan">0.5</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: range() integer step argument expected, got float.</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="nested-for-loops">Nested <code>for</code> loops</h3>
+<p>You can put for loops inside other for loops. For example here's a brute force way to create a multiplication table.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[12]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="c"># Create an empty 12x12 array designed to hold integers</span>
+<span class="n">mult_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">12</span><span class="p">,</span><span class="mi">12</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">13</span><span class="p">):</span>
+        <span class="n">mult_table</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">j</span>
+
+<span class="n">mult_table</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[12]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+array([[  1,   2,   3,   4,   5,   6,   7,   8,   9,  10,  11,  12],
+       [  2,   4,   6,   8,  10,  12,  14,  16,  18,  20,  22,  24],
+       [  3,   6,   9,  12,  15,  18,  21,  24,  27,  30,  33,  36],
+       [  4,   8,  12,  16,  20,  24,  28,  32,  36,  40,  44,  48],
+       [  5,  10,  15,  20,  25,  30,  35,  40,  45,  50,  55,  60],
+       [  6,  12,  18,  24,  30,  36,  42,  48,  54,  60,  66,  72],
+       [  7,  14,  21,  28,  35,  42,  49,  56,  63,  70,  77,  84],
+       [  8,  16,  24,  32,  40,  48,  56,  64,  72,  80,  88,  96],
+       [  9,  18,  27,  36,  45,  54,  63,  72,  81,  90,  99, 108],
+       [ 10,  20,  30,  40,  50,  60,  70,  80,  90, 100, 110, 120],
+       [ 11,  22,  33,  44,  55,  66,  77,  88,  99, 110, 121, 132],
+       [ 12,  24,  36,  48,  60,  72,  84,  96, 108, 120, 132, 144]])
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="exception-handling"><a name="exceptions">Exception handling</a></h2>
 <p>Another way to control the flow of a program is to gracefully handle any errors that can come up in the course of executing a program. More info on this is available <a href="http://docs.python.org/2/tutorial/errors.html">here</a>.</p>
 </div>
