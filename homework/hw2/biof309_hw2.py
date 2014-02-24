@@ -19,15 +19,15 @@ def SolicitInteger(lobound=None, hibound=None, default_return=None):
 	
 	Arguments:
 	lobound -- an integer indicating the lowest acceptable user input. By default lbound is
-	           None, i.e., there is no lower bound on what's an acceptable integer.
+	           assigned the value None, i.e., no lower bound on what's an acceptable integer.
 	hibound -- an integer indicating the highest acceptable user input. By default hibound is
-	           None, i.e., there is no higher bound on what's an acceptable integer.
+	           assigned the value None, i.e., no upper bound on what's an acceptable integer.
 	default_return -- an integer indicating the value this function should return if the user
 	           indicates s/he prefers the default by just pressing Enter.
 
 	Behavior:
 	* Print "invalid input" and return None if user input is not interpretable as an integer
-	  or the user presses Enter and no default_return is None.
+	  or the user presses Enter and default_return is None.
 	* Print "too low" and return None if lbound is specified in the function call and
 	  user input is less than lbound.
 	* Print "too high and return None if hibound is specified in the function call and
@@ -109,7 +109,7 @@ def RunTurn( lobound=1, hibound=20 ):
 	2. Record what time it is now
 	3. Loop forever asking the user to guess the number. Break out when they guess.
 	4. Keep track of how many times you've looped.
-	5. Total elapsed time is what time it is now - what time it was before
+	5. Total elapsed time is the current time now minus the time you recorded in step 2.
 	6. Print out a message as to how they did
 	7. Return the values
 
@@ -171,7 +171,7 @@ def RunGame():
 
 if __name__ == '__main__': # What the hell is this line for?!?! I'll tell you:
 
-	# If you run this program outright Python will run the code in this block and start the game.
+	# If you run this program, Python will execute the code in this block and start the game.
 	# However, if you import this code as a module into some other program (as is done by the
 	# autograder), it WILL NOT run the code in this block, and therefore will not automatically
 	# start a new game.

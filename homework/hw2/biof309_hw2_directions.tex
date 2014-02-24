@@ -20,11 +20,14 @@
 
 \section*{Files}
 \begin{itemize}
-  \item biof309_hw2_solution.pyc -  A byte compiled, fully playable solution to this assignment that is not human readable.
-  \item biof309_hw2.py - A partially completed program where you fill in the blanks.
-  \item biof309_test_hw2.py - Autograding program that will test your work.
-  \item biof309_hw2_directions.pdf - This file.
+  \item \texttt{biof309_hw2_solution.pyc} -  A fully-playable solution to this assignment that has been compiled into bytecode and is not human readable.
+  \item \texttt{biof309_hw2.py} - A partially completed program where you fill in the blanks.
+  \item \texttt{biof309_test_hw2.py} - Autograding program that will test your work.
+  \item \texttt{biof309_hw2_directions.pdf }- This file.
 \end{itemize}
+
+\section*{Assignment Overview}
+Most of the program has been written already. There are two functions for which you must fill in the code, namely \texttt{SolicitInteger} and \texttt{RunTurn}. You are not allowed to change the function signatures, i.e.,  you can't change the name of the function or the arguments. It is also not allowed to change any other part of the program to make your code work.
 
 \section*{Description of the Program}
 The object of the game is for the user to guess an integer chosen randomly by the computer. At the start of the game the user chooses the range of values in which the random number should fall. The game can have up to ten
@@ -37,46 +40,26 @@ time to guess their number. The program then asks the user(s) if they want to pl
 \begin{enumerate}
 	\item Download the files. Run the solution code. Run the test code on the solution to see
         that it works.
-	\item Rename the template file to follow the naming convention: yourlastname_firstinitial_hw2.py
-	\item Fill in the blanks. You are not allowed to change the function signatures, meaning
-        you can't change the name of the function you're filling in, nor can you change the
-        arguments to those functions. It is also not allowed to change any other part of the
-        program, including the other functions and their code. Play your game, and test that
-        it emulates the behavior and functionality of the solution.
-	\item Run the autograder code on your file on the command line with the command
-        python biof309_test_hw2.py yourlastname_firstinitial_hw2.py to see how you did.
+	\item Rename the template file to follow the naming convention: \\ \texttt{yourlastname_firstinitial_hw2.py}.
+	\item Fill in the blanks. Make sure your program pretty much works like the solution, but it doesn't have to be exact.
+	\item Run the autograder program on your file on the command line with the command \texttt{python biof309_test_hw2.py yourlastname_firstinitial_hw2.py}. Go back and fix your code so that it passes all the tests and you get a higher grade.
 	\item Send me an email with your program as an attachment with the subject \\
-        "\textless your last name\textgreater hw2 submission".
+        \em{Yourlastname HW2 Submission}.
 \end{enumerate}
 
 \section*{Concepts used}
-The concepts used in this program may include, but is not limited to, information capture (i.e., \texttt{input()} etc.), conditional statements (i.e., \texttt{if ... else} etc), dummyproofing (i.e., checking to see whether user's input is valid), loops, using an infinite loop (i.e., \texttt{while( True ):}, using \texttt{break} to get out), etc...
+The concepts used in this program may include, but is not limited to, information capture (i.e., \texttt{input()} etc.), conditional statements (i.e., \texttt{if ... else} etc), dummyproofing (i.e., checking to see whether user's input is valid), loops, using an infinite loop (i.e., \texttt{while( True ):}, using \texttt{break} to get out), calling a function, returning values from a function, etc...
 
 \section*{Python Packages to be Used}
 \texttt{time}, \texttt{random}
 
 \section*{Tips}
 \begin{itemize}
-	\item Each function has a docstring that says exactly what the function is supposed to do. Read
-  the docstrings very carefully.
-	\item You should read and understand the other parts of the program to see how the other parts
-  will use your function, as well as for tips on how to structure your functions.
-	\item This program should PEDANTICALLY check user input for validity. While you're writing your
-  code, try to think about all the ways the user can enter the wrong thing, and write the code
-  with guardrails to make sure it doesn't crash if the user enters garbage. At no point in
-	playing the game should any SyntaxError or uncaught Exception be raised.
-	\item While you're writing the code for your two functions, you might find it easier to test just
-  the function you're working on independently, rather than run the whole program. You can do
-	that by calling the functions individually from the "main" part of the program at the bottom
-	of the template file, e.g., comment out the call to RunGame() and make the call to your function
-  instead.
-	\item When you run your code, you may observe that the program has a logic error (a bug) because
-  it does not behave as intended. In order to track down bugs, you can insert print statements
-	printing out the values of the variables you're using, or you can use the Python debugger
-	to step through your code line by line to see what it's doing in real time.
-  To do the latter, insert the line "import pdb; pdb.set_trace()" somewhere above the code
-  where you suspect the bug is and run the program. The program will stop at the line after
-	the import. Google around to learn about the commands used to drive the Python debugger.
+  \item Each function has a docstring that says exactly what the function is supposed to do, just follow the directions.
+  \item Read and understand the other parts of the program to see how your function will be used.
+  \item Try to think about all the ways the user can enter the wrong thing, and build checks into the code to make sure it doesn't crash if the user enters garbage. At no point in playing the game should any SyntaxError or uncaught Exception be raised.
+  \item You might find it easier to test the function you're working on independently from the program. You can do that by commenting out the call to \texttt{RunGame()} at the bottom and make the call to your function instead.
+  \item If your program has a bug (logic error), try using print statements to print out values, or comment some lines out and see what happens, or use the Python debugger to step through your code line by line to see what it's doing in real time.
 \end{itemize}
 
 
