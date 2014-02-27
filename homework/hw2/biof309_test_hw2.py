@@ -8,8 +8,6 @@ import unittest
 import importlib
 import sys
 
-
-
 #=========================================================================
 class TestModule( object ):
 	student_module = None
@@ -68,7 +66,7 @@ class TestHW2( unittest.TestCase ):
 
 	#============================================
 	def test_SolicitInteger_Garbage( self ):
-		"""Does your SolicitInteger function correctly handles garbage input?"""
+		"""Does your SolicitInteger function correctly handle garbage input?"""
 
 		invalid_garbage = (
 				( ( None, None, None ), "l jdf", None ),
@@ -132,19 +130,21 @@ class TestHW2( unittest.TestCase ):
 		self.callSolicitInteger( valid, None )
 
 	#============================================
-	@unittest.expectedFailure
+	@unittest.skip( "Not testing RunTurn with unittest" )
 	def test_RunTurn( self ):
 		# enter trash and see if it's dealt with
 		# Check to see that 0 is a valid lower and upper bound
 		# check that the number chosen by the computer is really random by running RunTurn 5 times
 
-
-		stu_mod.RunTurn(-1000,1000)
+		pass
+		#stu_mod.RunTurn(-1000,1000)
 
 if __name__ == '__main__':
 
 
 	_ = TestModule()
+
+	print "******************BIOF 309 HW2 TEST PROGRAM, version 1.0 *******************"
 
 	del sys.argv[1:]
 	unittest.main(buffer=True,verbosity=3)
