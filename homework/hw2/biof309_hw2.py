@@ -41,7 +41,7 @@ def SolicitInteger(lobound=None, hibound=None, default_return=None):
 	* No loops in here. This function asks for input once and returns something based on that.
 	* I did it in 14 lines. Can you do it in less?? :-)
 	"""
-		pass
+	pass
 
 
 #==========================================================================
@@ -117,7 +117,7 @@ def RunTurn( lobound=1, hibound=20 ):
 	* Use your completed SolicitInteger function in here.
 	* I did it in 15 lines, but it is definitely possible to do it in less :-)
 	"""
-		pass
+	pass
 
 #==========================================================================
 def RunGame():
