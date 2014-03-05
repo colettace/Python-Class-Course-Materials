@@ -127,11 +127,11 @@ class TestHW2( unittest.TestCase ):
 		invalid_garbage = (
 				( ( None, None, None ), "l jdf", None ),
 				( ( None, None, None ), "",      None ),
-				( ( None, None, None ), "19fgd", None ))
-				( ( -10, None, None ), "crap", None ))
-				( ( -10, 10, None ), "crappetycrap", None ))
-				( ( None, 10, None ), "dasisnichtsogut", None ))
-				( ( None, 10, 5 ), "sadkjfhslakfhkl lk", None ))
+				( ( None, None, None ), "19fgd", None ),
+				( ( -10, None, None ), "crap", None ),
+				( ( -10, 10, None ), "crappetycrap", None ),
+				( ( None, 10, None ), "dasisnichtsogut", None ),
+				( ( None, 10, 5 ), "sadkjfhslakfhkl lk", None ),
 				( ( -10, None , 10 ), "sadkjfhslakfhkl lk", None ))
 
 		self.callSolicitInteger( invalid_garbage, 'invalid input' )
@@ -151,7 +151,7 @@ if __name__ == '__main__':
 
 	_ = TestModule()
 
-	print "******************BIOF 309 HW2 TEST PROGRAM, version 2.0 *******************"
+	print "******************BIOF 309 HW2 TEST PROGRAM, version 2.1 *******************"
 
 	del sys.argv[1:]
 	unittest.main(buffer=True,verbosity=3)
