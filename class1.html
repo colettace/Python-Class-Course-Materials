@@ -112,17 +112,41 @@
 					<img src="hitchhikers_guide.jpg">
 					</figure>
 					</p>
+					</section>
+
+				<section data-markdown id="devcycle">
+<script type="text/template">
+## How to write code
+### The Development Cycle
+* write
+* test
+* debug
+* show graphic
+
+</script>
 				</section>
+				<section data-markdown id="pseudocode">
+<script type="text/template">
+## Pseudocode
+* State in English the logic you're trying to encode into python
+* Show example
+</script>
+				</section>
+
 				<section data-markdown id="debugging">
 					<script type="text/template">
 ## Debugging
 * Anatomy of an error message: backtrace, error tpye, line number, description
+    * Error messages aren't always helpful
+    * Sometimes the bug isn't on the line that the program crashes on
 * If you get an error message, READ THE ERROR MESSAGE <!-- .element: class="fragment" -->
-* Localize where the error is happening, i.e., what line <!-- .element: class="fragment" -->
-* Google error message, or google your question "How do I ..." <!-- .element: class="fragment" -->
+* Localize where the error is happening, i.e., what line? <!-- .element: class="fragment" -->
+* Google error message, or google your question "How do I fix <error type>" <!-- .element: class="fragment" -->
 * Change the error line <!-- .element: class="fragment" -->
-    * Break up the code on that line into two or more lines
-    * Comment out the line altogether
+    * Break up the code on that line into two or more lines <!-- .element: class="fragment" -->
+    * Comment out the line altogether. If error still happens, problem is on the preceeding line. <!-- .element: class="fragment" -->
+		* Use print statements to print out variable values before the error
+		* Use the Python debugger
 * Email the group:<!-- .element: class="fragment" -->
     * Give all steps to reproduce problem (say exactly what you did)
     * Say what you did to try to fix the problem
