@@ -64,16 +64,7 @@ class TestHW2( unittest.TestCase ):
 
 		stu_mod.raw_input = raw_input
 
-	#============================================
-	def test_SolicitInteger_Garbage( self ):
-		"""Does your SolicitInteger function correctly handle garbage input?"""
 
-		invalid_garbage = (
-				( ( None, None, None ), "l jdf", None ),
-				( ( None, None, None ), "",      None ),
-				( ( None, None, None ), "19fgd", None ))
-
-		self.callSolicitInteger( invalid_garbage, 'invalid input' )
 
 	#============================================
 	def test_SolicitInteger_TooLow( self ):
@@ -130,6 +121,22 @@ class TestHW2( unittest.TestCase ):
 		self.callSolicitInteger( valid, None )
 
 	#============================================
+	def test_SolicitInteger_Garbage( self ):
+		"""Does your SolicitInteger function correctly handle garbage input?"""
+
+		invalid_garbage = (
+				( ( None, None, None ), "l jdf", None ),
+				( ( None, None, None ), "",      None ),
+				( ( None, None, None ), "19fgd", None ))
+				( ( -10, None, None ), "crap", None ))
+				( ( -10, 10, None ), "crappetycrap", None ))
+				( ( None, 10, None ), "dasisnichtsogut", None ))
+				( ( None, 10, 5 ), "sadkjfhslakfhkl lk", None ))
+				( ( -10, None , 10 ), "sadkjfhslakfhkl lk", None ))
+
+		self.callSolicitInteger( invalid_garbage, 'invalid input' )
+
+	#============================================
 	@unittest.skip( "Not testing RunTurn with unittest" )
 	def test_RunTurn( self ):
 		# enter trash and see if it's dealt with
@@ -144,7 +151,7 @@ if __name__ == '__main__':
 
 	_ = TestModule()
 
-	print "******************BIOF 309 HW2 TEST PROGRAM, version 1.0 *******************"
+	print "******************BIOF 309 HW2 TEST PROGRAM, version 2.0 *******************"
 
 	del sys.argv[1:]
 	unittest.main(buffer=True,verbosity=3)
