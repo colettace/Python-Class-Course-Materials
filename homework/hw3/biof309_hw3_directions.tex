@@ -61,7 +61,7 @@ The concepts used in this program may include, but is not limited to, tree trave
 \begin{itemize}
   \item \textbf{There are multiple common names for various species of birds!} My function \texttt{BuildTaxonNamesDict} builds a dictionary where the key is the taxon id number, and the value is the common name, except that when there are multiple common names, the functions puts them into one string delimited by a \texttt{/}, \textit{e.g.}, \texttt{Carrier Pigeon/Domestic Pigeon/Rock Dove/Rock Pigeon}. Don't forget to split these strings into individual common names before performing your intersection.
   \item Don't take capitalization into account, use all lowercase or uppercase words.
-  \item You can create a simple regular expression that returns all words in a string by splitting on \textbf{any non-alphanumeric} character.
+  \item You can create a simple regular expression that returns all words in a string by splitting on character or sequence of characters that are \textbf{non-alphanumeric}.
   \item It might be helpful for you to write the two word lists out to separate files, perhaps sorted using the \texttt{sorted} function, to make sure you're properly splitting, capitalizing, etc.
   \item In the past students have tended to split multi-word common names into individual words for the purposes of doing the intersection, \textit{e.g.}, \texttt{Carrier Pidgeon} becomes two words \texttt{Carrier} and \texttt{Pidgeon} ... \textbf{you don't need to do that}. You should end up with a intersection of 8 words and my girlfriend's name should be among them.
 \end{itemize}
