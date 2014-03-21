@@ -29,17 +29,19 @@ To write a program to find the names of all birds mentioned in Henry David Thore
   \begin{itemize}
     \item \texttt{guess_my_gfs_name.png} - Contains my girlfriend's riddle
     \item \texttt{taxonomy_files_readme.txt} - Tells you what columns are what in the taxonomy files - provided only for your interest, not necessary to complete assignment.
-    \item \texttt{walden.txt} (0.5MB) - The entire text of Henry David Thoreau’s \textit{Walden}
+    \item \texttt{walden.txt} (0.5MB) - The entire text of Henry David Thoreau's \textit{Walden}
     \item \texttt{names.dmp} (82MB) - Taxonomy info (names) that corresponds to each node
     \item \texttt{nodes.dmp} (66MB) - Complete NCBI taxonomy node structure
   \end{itemize}
 \end{itemize}
 
-\section*{Assignment Overview}
-Most of the program has been written already. You must complete the function \texttt{ReturnSetOfWordsInFile}. You are allowed to add or change the main part of the program at the bottom of the template to do the final cross-referencing, but it is not allowed to change any other part of the program to make your code work.
+\section*{Background}
+When my girlfriend first introduced herself to me, she gave me a riddle to guess her name: that it was the name of a bird that was mentioned in passing in the text of Henry David Thoreau's \textit{Walden}. So I used NCBI taxonomy data to obtain the name of every known species of bird (class \textit{Aves}), and I cross-referenced that against \textit{Walden}. In this homework you'll retrace my steps!
 
-\section*{Description of the Program}
-When my girlfriend first introduced herself to me, she gave me a riddle to guess her name. She said her name was the name of a bird that was mentioned in passing in the text of Henry David Thoreau's \textit{Walden}. So I successfully used NCBI taxonomy data to obtain the name of every known species of bird (class \textit{Aves}), and I cross-referenced that against \textit{Walden}. She was impressed! In this file, I have included three functions that parse NCBI taxonomy files and provide the list of species of a given taxon node id. It is your task to complete the last step by writing a function that parses a file containing the text of \textit{Walden} and returns a set of all the words used. Then you find the intersection of the two sets, and my girlfriend's name will be one of the words in the intersection.
+\section*{Assignment Overview}
+Most of the program has been written already. You must complete the function \\ \texttt{ReturnSetOfWordsInFile}. You are allowed to add or change the main part of the program at the bottom of the template to do the final cross-referencing, but it is not allowed to change any other part of the program to make your code work.
+
+In the template file, I have included three functions that parse NCBI taxonomy files and provide the list of species of a given taxon node id. It is your task to complete the last step by writing a function that parses a file containing the text of \textit{Walden} and returns a set of all the words used. Then you find the intersection of the two sets, and my girlfriend's name will be one of the words in the intersection.
 
 \section*{Directions}
 \begin{enumerate}
