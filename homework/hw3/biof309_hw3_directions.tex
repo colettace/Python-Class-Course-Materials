@@ -24,14 +24,14 @@ To write a program to find the names of all birds mentioned in Henry David Thore
 \section*{Files}
 \begin{itemize}
   \item \texttt{biof309_hw3_directions.pdf} - This file.
-  \item \texttt{biof309_hw3_template} -  A partially completed program where you fill in the blanks.
+  \item \texttt{biof309_hw3_template.py} -  A partially completed program where you fill in the blanks.
   \item \texttt{biof309_hw3_files.tar.gz} - (21MB) - zipfile containing raw data files including:
   \begin{itemize}
     \item \texttt{guess_my_gfs_name.png} - Contains my girlfriend's riddle
     \item \texttt{taxonomy_files_readme.txt} - Tells you what columns are what in the taxonomy files - provided only for your interest, not necessary to complete assignment.
     \item \texttt{walden.txt} (0.5MB) - The entire text of Henry David Thoreau's \textit{Walden}
-    \item \texttt{names.dmp} (82MB) - Taxonomy info (names) that corresponds to each node
-    \item \texttt{nodes.dmp} (66MB) - Complete NCBI taxonomy node structure
+    \item \texttt{nodes.dmp} (66MB) - Complete NCBI taxonomy database structure, containing taxon id (integer), parent taxon id (integer), taxon rank (kingdom, class, genus, order, species), etc.
+    \item \texttt{names.dmp} (82MB) - Scientific and common names for each corresponding taxon in \texttt{nodes.dmp}.
   \end{itemize}
 \end{itemize}
 
@@ -41,7 +41,15 @@ When my girlfriend first introduced herself to me, she gave me a riddle to guess
 \section*{Assignment Overview}
 Most of the program has been written already. You must complete the function \\ \texttt{ReturnSetOfWordsInFile}. You are allowed to add or change the main part of the program at the bottom of the template to do the final cross-referencing, but it is not allowed to change any other part of the program to make your code work.
 
-In the template file, I have included three functions that parse NCBI taxonomy files and provide the list of species of a given taxon node id. It is your task to complete the last step by writing a function that parses a file containing the text of \textit{Walden} and returns a set of all the words used. Then you find the intersection of the two sets, and my girlfriend's name will be one of the words in the intersection.
+In the template file, I have included three functions:
+\begin{enumerate}
+	\item \texttt{BuildTaxonNamesDict} parses the \texttt{names.dmp} file and returns a \texttt{dict} mapping taxon node ids to taxon names. \textbf{Important:} if the taxon has multiple common names the function will concatenate them with a \texttt{'/'} delimiter, see Tips section below for more info.
+	\item \texttt{BuildTaxonomyTree} parses the \texttt{nodes.dmp} file and returns two \texttt{dict}s, the first mapping node ids to a list of child nodes, the second mapping node ids to node taxonomy rank (kingdom, class, genus, order, species, etc..)
+	\item \texttt{TaxonomyWalker} is a recursive function that takes the \texttt{dict}s generated above as well as a starting taxon and returns a \texttt{set} of names for all child taxa that are species or subspecies.
+\end{enumerate}
+Additionally in the \texttt{__main__} part of the program at the bottom of the template I have called the functions for the class \textit{Aves} (node\# 8782) so that you already have all the bird names.
+
+It is your task to complete the last step by writing a function that parses a file containing the text of \textit{Walden} and returns a \texttt{set} of all the words used. Then you find the intersection of the two sets, and my girlfriend's name will be one of the words in the intersection.
 
 \section*{Directions}
 \begin{enumerate}

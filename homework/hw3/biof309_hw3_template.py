@@ -93,12 +93,13 @@ def TaxonomyWalker( parent_node_id, node_dict, rank_dict, names_dict, indent_lev
 	format_str = '{}Found {} {} "{}" in parent {} {} "{}"'
 	set_of_species_names = set()
 
+	parent_rank = rank_dict[ parent_node_id ]
+	# Here, we use "names_dict.get(parent_node_id, '')" instead of "names_dict[ parent_node_id ]"
+	# because .get() won't raise a KeyError exception if parent_node_id is not in the names_dict
+	parent_name = names_dict.get( parent_node_id, '' )
+
 	# Iterate over this node's children taxa:
 	for child_node_id in node_dict[ parent_node_id ]:
-		parent_rank = rank_dict[ parent_node_id ]
-		# Here, we use "names_dict.get(parent_node_id, '')" instead of "names_dict[ parent_node_id ]"
-		# because .get() won't raise a KeyError exception if parent_node_id is not in the names_dict
-		parent_name = names_dict.get( parent_node_id, '' )
 		child_rank = rank_dict[ child_node_id ]
 		child_name = names_dict.get( child_node_id, '' )
 		print format_str.format( indent_level*"  ", child_rank, child_node_id, child_name, parent_rank, parent_node_id, parent_name )
