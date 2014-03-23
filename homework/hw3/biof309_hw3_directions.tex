@@ -47,7 +47,7 @@ In the template file, I have included three functions:
 	\item \texttt{BuildTaxonomyTree} parses the \texttt{nodes.dmp} file and returns two \texttt{dict}s, the first mapping node ids to a list of child nodes, the second mapping node ids to node taxonomy rank (kingdom, class, genus, order, species, etc..)
 	\item \texttt{TaxonomyWalker} is a recursive function that takes the \texttt{dict}s generated above as well as a starting taxon and returns a \texttt{set} of names for all child taxa that are species or subspecies.
 \end{enumerate}
-Additionally in the \texttt{__main__} part of the program at the bottom of the template I have called the functions for the class \textit{Aves} (node\# 8782) so that you already have all the bird names.
+Additionally, in the \texttt{__main__} part of the program at the bottom of the template, I have called the functions for the class \textit{Aves} (node\# 8782) so that you already have all the bird names.
 
 It is your task to complete the last step by writing a function that parses a file containing the text of \textit{Walden} and returns a \texttt{set} of all the words used. Then you find the intersection of the two sets, and my girlfriend's name will be one of the words in the intersection.
 
@@ -60,7 +60,7 @@ It is your task to complete the last step by writing a function that parses a fi
 \end{enumerate}
 
 \section*{Concepts used}
-The concepts used in this program may include, but is not limited to, tree traversal, the built-in Python type \texttt{set}, regular expressions, string operations, calling functions, etc...
+The concepts used in this program may include, but is not limited to, opening and reading a file, the built-in Python type \texttt{set}, regular expressions, splitting a string based on one or more delimiter characters, calling functions, traversing a node tree with recursion, etc...
 
 \section*{Python Packages to be Used}
 \texttt{re} - for regular expressions
