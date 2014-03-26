@@ -115,9 +115,11 @@ def TaxonomyWalker( parent_node_id, node_dict, rank_dict, names_dict, indent_lev
 
 #==============================================================================
 def ReturnSetOfWordsInFile( input_file ):
-	"""YOU UST IMPLEMENT THIS METHOD!
-	Parses the test file "input_file" and returns a set of all the words contained therein.
+	"""Parses the test file "input_file" and returns a set of all the words contained therein.
+	INPUT1: input_file := string path to a file which is to be parsed
+	RETURN: set_of_words_in_file := set of words contained in input_file
 	"""
+	#YOU MUST IMPLEMENT THIS METHOD!
 	pass
 
 #==============================================================================
@@ -125,11 +127,13 @@ if __name__ == '__main__':
 
 	names_dict = BuildTaxonNamesDict( 'names.dmp' )
 	taxonomy_node_dict, taxonomy_rank_dict = BuildTaxonomyTree( 'nodes.dmp' )
- 	list_of_species_names = TaxonomyWalker( '8782', taxonomy_node_dict, taxonomy_rank_dict, names_dict )  
+ 	set_of_species_names = TaxonomyWalker( '8782', taxonomy_node_dict, taxonomy_rank_dict, names_dict )
 	
+	set_of_walden_words = ReturnSetOfWordsInFile( 'walden.txt' )
 	
-	walden_words = ReturnSetOfWordsInFile( 'walden.txt' )
-	
-	
-	# Now find the cross section of the two word lists
+	# Now find the intersection of the two sets of words.
+	# Email me the intersection set as well as your guess as to
+	# what my girlfriend's name is.
+	# Good luck!
+	# -Chris
 
