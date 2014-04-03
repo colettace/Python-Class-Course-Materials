@@ -5,8 +5,7 @@ Template File for Homework 4:
 OBJECT-ORIENTED NUCLEOTIDE-TO-AMINO-ACID TRANSLATOR
 
 Anywhere you see a "raise NotImplementedError" in this file, you have to fill in that method's 
-implementation. For most of the methods, you should just be able to insert the
-guts of functions you wrote in Homework 3 with only minor modifications.
+implementation.
 
 You are not allowed to change the method declaration lines, which are the lines with the
 "def" in them. In computer science terms "the interface is fixed."
