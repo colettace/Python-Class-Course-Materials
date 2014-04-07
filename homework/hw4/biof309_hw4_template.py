@@ -52,8 +52,6 @@ class NucleotideSequence( object ):
 
 	def __init__( self, sequence=None ):
 		self._data = sequence
-		self._translation_table = None
-		self._valid_nts = None
 
 	# YOU MUST IMPLEMENT THE FOLLOWING METHODS FOR A MAXIMUM GRADE OF C:
 
@@ -159,22 +157,24 @@ rna_codon_dict = { "UUU" : "F", "UCU" : "S", "UAU" : "Y", "UGU" : "C", \
 
 class DNASequence( NucleotideSequence ):
 
+	# Class attributes
 	_translation_table = dna_codon_dict
+	_valid_nts = "AGCT"
 
-	def __init__( self, sequence=None ):
-		self._data = sequence
-		self._valid_nts = "AGCT"
+	# All other attributes inherited from base class
 
 class RNASequence( NucleotideSequence ):
 
+	# Class Attributes
 	_translation_table = rna_codon_dict
+	_valid_nts = "AGCU"
 
-	def __init__( self, sequence=None ):
-		self._data = sequence
-				self._valid_nts = "AGCU"
-
+	# All other attributes inherited from base class
 
 if __name__ == '__main__':
+	DNAseq = DNASequence()
+	import sys
+	sys.exit()
 	DNAseq = DNASequence.NewFromFastaFile( 'zscan4.fasta' )
 
 	reading_frames = ( (True, 1), (True, 2), (True, 3), (False, 1), (False, 2), (False, 3) )
