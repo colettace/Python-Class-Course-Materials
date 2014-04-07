@@ -172,9 +172,7 @@ class RNASequence( NucleotideSequence ):
 	# All other attributes inherited from base class
 
 if __name__ == '__main__':
-	DNAseq = DNASequence()
-	import sys
-	sys.exit()
+
 	DNAseq = DNASequence.NewFromFastaFile( 'zscan4.fasta' )
 
 	reading_frames = ( (True, 1), (True, 2), (True, 3), (False, 1), (False, 2), (False, 3) )
