@@ -159,17 +159,19 @@ rna_codon_dict = { "UUU" : "F", "UCU" : "S", "UAU" : "Y", "UGU" : "C", \
 
 class DNASequence( NucleotideSequence ):
 
+	_translation_table = dna_codon_dict
+
 	def __init__( self, sequence=None ):
 		self._data = sequence
-		self._translation_table = dna_codon_dict
 		self._valid_nts = "AGCT"
 
 class RNASequence( NucleotideSequence ):
 
+	_translation_table = rna_codon_dict
+
 	def __init__( self, sequence=None ):
 		self._data = sequence
-		self._translation_table = rna_codon_dict
-		self._valid_nts = "AGCU"
+				self._valid_nts = "AGCU"
 
 
 if __name__ == '__main__':
