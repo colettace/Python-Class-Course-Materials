@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>BIOF309 Class Notes, March 27, 2014: Object Oriented Programming, Part 1</title>
+<title>BIOF309 Object Oriented Programming, Part 1</title>
 <script type="text/javascript">
 
   var _gaq = _gaq || [];
@@ -1706,13 +1706,36 @@ init_mathjax();
 </head>
 <body>
 
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="biof-309---introduction-to-python">BIOF 309 - Introduction to Python</h1>
+<h2 id="object-oriented-programming---part-1">Object Oriented Programming - Part 1</h2>
+<h3 id="table-of-contents">Table Of Contents</h3>
+<ol style="list-style-type: decimal">
+<li><a href="#instances">Classes and class instances</a></li>
+<li><a href="#attributes">Attributes</a></li>
+<li><a href="#init">The __init__ method</a></li>
+<li><a href="#exploring">Exploring your objects</a></li>
+<li><a href="#classattribs">Instance attributes vs. class attributes</a></li>
+<li><a href="#casestudy">Case Study: Functional vs. Object Oriented approaches to parsing data</a></li>
+<li><a href="#special">More about &quot;Special&quot; atributes</a></li>
+<li><h2><a href="#sorting">Sorting user-defined objects</a></h2></li>
+</ol>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="classes-and-class-instances"><a name="instances">Classes and class instances</a></h2>
+<ul>
+<li>In Python, a <code>class</code> (<a href="https://docs.python.org/2/tutorial/classes.html">documentation</a>) is how you define your own type, to go along with all the built-in Python types, like <code>int</code>, <code>string</code>, <code>dict</code>, etc.</li>
+<li>When you define a class, it's like you're defining the shape of a cookie-cutter or cutting out a stencil.</li>
+</ul>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[94]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+<div class="highlight"><pre><span class="c"># In Python 2.x, you have to put (object) in the first line, but in 3.x you can leave it out</span>
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
 
@@ -1723,10 +1746,10 @@ In&nbsp;[1]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[3]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span> <span class="n">Student</span><span class="p">)</span>
+<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span> <span class="n">Student</span> <span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1737,7 +1760,7 @@ In&nbsp;[2]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[2]:</div>
+    Out[3]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -1751,6 +1774,13 @@ type
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In programming terms, the cookie is an <em>instance</em> of the cookie-cutter. When you hold up your class stencil to the wall and spray-paint over it, you have <em>instantiated</em> and object of that class. The terms <em>instance</em> and <em>object</em> are interchangeable in this context.</p>
+<div class="figure">
+<img src="http://upload.wikimedia.org/wikipedia/commons/6/62/CPT-OOP-objects_and_classes.svg" alt="example of a class and its instances" /><p class="caption">example of a class and its instances</p>
+</div>
+<p>In Python to instantiate any type of object you use the open-close parentheses syntax:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1800,10 +1830,39 @@ __main__.Student
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[32]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span> <span class="mi">79</span> <span class="p">)</span>
+<div class="highlight"><pre><span class="k">print</span> <span class="n">chris</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+&lt;__main__.Student object at 0x1022e8d90&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[33]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="nb">id</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -1814,12 +1873,12 @@ In&nbsp;[5]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[5]:</div>
+    Out[33]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-int
+4331572624
 </pre>
 
 </div>
@@ -1829,33 +1888,24 @@ int
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[6]:
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>By the way, here the <code>__main__</code> part above is the <a href="http://bytebaker.com/2008/07/30/python-namespaces/">namespace</a> which is just the container for all your local variables, functions, and classes, so that your class definition of <code>Student</code> wouldn't collide with Python's internal definition of Student if it had one, for example. It is the same <code>__main__</code> referred to in the <code>if __name__ == '__main__':</code> line that we've used in our homework. The <code>0xblahblahblah</code> is the objects address in memory and could be used for establishing identity (The hexadecimal number 1022e8d90 equals 4331572624 in base 10.)</p>
 </div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi!&quot;</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="attributes"><a name="attributes">Attributes</a></h2>
+<ul>
+<li>A class is like a noun in grammar. In our examples we've been using the noun <em>Student</em>. We will now define the attributes of what makes a student a student.</li>
+<li>A class is like a container, too. It contains what we call attributes, of which there are two types:
+<ul>
+<li>A <em>data attribute</em> is a value attached to each object</li>
+<li>A <em>method</em> is a function that “belongs to” an object.</li>
+</ul></li>
+<li>Thus, related values and functions are bundled together in one container. The class is said to <a href="http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29">encapsulate</a> the notion of all the data and logic related to that thing, in our case, a student.</li>
+</ul>
 </div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[8]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="data-attributes">Data Attributes</h4>
+<p><em>Data attributes</em> are just values that are attached to each instance.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1863,50 +1913,17 @@ In&nbsp;[8]:
 In&nbsp;[9]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">chris</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
-</pre></div>
+<div class="highlight"><pre><span class="c"># fname and lname are data attributes</span>
+<span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="s">&quot;Chris&quot;</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="s">&quot;Coletta&quot;</span>
 
-</div>
-</div>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="s">&quot;Ben&quot;</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="s">&quot;Busby&quot;</span>
 
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Hi!
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[10]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">def</span> <span class="nf">regfunc</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s">&quot;Hi!&quot;</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[11]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span> <span class="n">regfunc</span><span class="p">)</span>
+<span class="c"># Do we have the same first name? Nope.</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">fname</span> <span class="o">==</span> <span class="n">chris</span><span class="o">.</span><span class="n">fname</span>
 </pre></div>
 
 </div>
@@ -1917,12 +1934,12 @@ In&nbsp;[11]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[11]:</div>
+    Out[9]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-function
+False
 </pre>
 
 </div>
@@ -1932,98 +1949,9 @@ function
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[12]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">SayHi</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[12]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-instancemethod
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[13]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">regfunc</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[13]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&lt;function __main__.regfunc&gt;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[14]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">regfunc</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Hi!
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="methods">Methods</h4>
+<p><em>Methods</em> are just functions that exist in the namespace of the class. Python automatically passes to methods a reference to the instance upon which the method is called. That's why you always include <code>self</code> in every method's argument list.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2031,27 +1959,21 @@ Hi!
 In&nbsp;[15]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">fname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">lname</span>
-        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi!&quot;</span>
-</pre></div>
+<div class="highlight"><pre><span class="c"># Define the method SayHi</span>
+<span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span> <span class="c"># self is always the first argument to any method</span>
+        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
 
-</div>
-</div>
+<span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="s">&quot;Chris&quot;</span>
 
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[17]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;Tim&#39;</span><span class="p">,</span> <span class="s">&#39;Gilpatrick&#39;</span><span class="p">)</span>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="s">&quot;Ben&quot;</span>
+
+<span class="c"># See how I call the function without passing any arguments?</span>
+<span class="c"># Python automatically adds self when the method is called.</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
+<span class="n">ben</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -2064,8 +1986,242 @@ In&nbsp;[17]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-making a new Student named,  Tim Gilpatrick
+Hi! I&apos;m Chris
+Hi! I&apos;m Ben
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If you define a method with the <code>self</code> argument alone, that means it expects to be called with zero arguments. You will get an error if you try to pass an argument it wasn't expecting, just like any other function. In this case, it will say you gave <em>two</em> arguments, because the prepending of the self-reference to the argument list happens behind the scenes.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[18]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Call it with one argument, it&#39;ll say you gave two:</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">SayHi</span><span class="p">(</span> <span class="s">&quot;superfluous!&quot;</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-18-9bd08b0b0127&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># Call it with one argument, it&apos;ll say you gave two:</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span>chris<span class="ansiblue">.</span>SayHi<span class="ansiblue">(</span> <span class="ansiblue">&quot;superfluous!&quot;</span> <span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: SayHi() takes exactly 1 argument (2 given)</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="the-__init__-method"><a name="init">The <code>__init__</code> method</a></h2>
+<p>The <code>__init__</code> is one of many <em><a href="http://www.rafekettler.com/magicmethods.html">&quot;special&quot; methods</a></em>, a.k.a. magic methods. The method <code>__init__</code> is called automatically whenever an object is instantiated. In general computer science terms, this method roughly fulfills the role of a <a href="http://en.wikipedia.org/wiki/Constructor_%28object-oriented_programming%29">constructor</a>. You can define it to take arguments to initialize the data atributes, rather than set them explicitly as we did above.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[97]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;making a new Student named&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="n">last_name</span>
+        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
+    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
+        
+<span class="n">matt</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;Matt&#39;</span><span class="p">,</span> <span class="s">&#39;Shirley&#39;</span><span class="p">)</span>
+<span class="n">matt</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+making a new Student named Matt Shirley
 done making new student
+Hi! I&apos;m Matt
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What if you wanted to define an empty student with the <code>fname</code> and the <code>lname</code> unitialized? You couldn't do it with the <code>Student</code> class as defined as above:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[98]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># With the __init__ function as defined above, it now</span>
+<span class="c"># expects and requires you to pass a first name and a last name</span>
+<span class="c"># on instantiation:</span>
+<span class="n">blank_student</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-98-cb4314755f80&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      2</span> <span class="ansired"># expects and requires you to pass a first name and a last name</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">      3</span> <span class="ansired"># on instantiation:</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 4</span><span class="ansired"> </span>blank_student <span class="ansiblue">=</span> Student<span class="ansiblue">(</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: __init__() takes exactly 3 arguments (1 given)</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To get around this, just define the <code>__init__</code> method argument list with default values:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[26]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;making a new Student named&quot;</span><span class="p">,</span> <span class="n">first_name</span><span class="p">,</span> <span class="n">last_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="n">last_name</span>
+        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
+    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
+        
+<span class="n">empty</span> <span class="o">=</span> <span class="n">Student</span><span class="p">()</span>
+<span class="n">empty</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+making a new Student named  
+done making new student
+Hi! I&apos;m 
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="exploring-your-objects"><a name="exploring">Exploring your objects</a></h2>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="docstrings-and-help"><em>Docstrings</em> and <code>help()</code></h3>
+<p>You can define a class's <em>docstring</em> by placing a string on the second line of the class definition. This is what Python will print out when you call for <code>help</code> on an object. Each method can have their own docstrings as well.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[39]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="s">&quot;A type we&#39;ve defined to illustrate the use of OOP in Python.&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="p">):</span>
+        <span class="s">&quot;Constructor method.&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="n">last_name</span>
+        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
+    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="s">&quot;Prints a customized message.&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
+        
+<span class="n">help</span><span class="p">(</span> <span class="n">Student</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Help on class Student in module __main__:
+
+class Student(__builtin__.object)
+ |  A type we&apos;ve defined to illustrate the use of OOP in Python.
+ |  
+ |  Methods defined here:
+ |  
+ |  SayHi(self)
+ |      Prints a customized message.
+ |  
+ |  __init__(self, first_name=&apos;&apos;, last_name=&apos;&apos;)
+ |      Constructor method.
+ |  
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |  
+ |  __dict__
+ |      dictionary for instance variables (if defined)
+ |  
+ |  __weakref__
+ |      list of weak references to the object (if defined)
+
 
 </pre>
 </div>
@@ -2078,10 +2234,47 @@ done making new student
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[18]:
+In&nbsp;[38]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">tim</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">help</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">SayHi</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Help on method SayHi in module __main__:
+
+SayHi(self) unbound __main__.Student method
+    Prints a customized message.
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="using-dir">Using <code>dir()</code></h3>
+<p>Python defines some additional &quot;special&quot; attributes behind the scenes for you. You can see a full list of attributes by using the <code>dir</code> function.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[41]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2092,7 +2285,7 @@ In&nbsp;[18]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[18]:</div>
+    Out[41]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
@@ -2116,8 +2309,8 @@ In&nbsp;[18]:
  &apos;__str__&apos;,
  &apos;__subclasshook__&apos;,
  &apos;__weakref__&apos;,
- &apos;first_name&apos;,
- &apos;last_name&apos;]
+ &apos;fname&apos;,
+ &apos;lname&apos;]
 </pre>
 
 </div>
@@ -2127,13 +2320,17 @@ In&nbsp;[18]:
 </div>
 
 </div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="the-special-attribute-__class__">The special attribute <code>__class__</code></h3>
+<p>For a given object <code>the_object</code>, if you want to know what type of class it is, you can call <code>type( the_object )</code>. All the <code>type()</code> function does is return the value contained in the <code>__class__</code> attribute, which is set for you automatically by Python.</p>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[19]:
+In&nbsp;[42]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span><span class="o">.</span><span class="n">first_name</span>
+<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2144,12 +2341,12 @@ In&nbsp;[19]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[19]:</div>
+    Out[42]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&apos;Tim&apos;
+__main__.Student
 </pre>
 
 </div>
@@ -2162,10 +2359,10 @@ In&nbsp;[19]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[20]:
+In&nbsp;[43]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span><span class="o">.</span><span class="n">last_name</span>
+<div class="highlight"><pre><span class="n">chris</span><span class="o">.</span><span class="n">__class__</span>
 </pre></div>
 
 </div>
@@ -2176,12 +2373,12 @@ In&nbsp;[20]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[20]:</div>
+    Out[43]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-&apos;Gilpatrick&apos;
+__main__.Student
 </pre>
 
 </div>
@@ -2191,251 +2388,9 @@ In&nbsp;[20]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[21]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Hi!
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[22]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">fname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">lname</span>
-        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[23]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;Tim&#39;</span><span class="p">,</span> <span class="s">&#39;Gilpatrick&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  Tim Gilpatrick
-done making new student
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[24]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">tim</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Hi! I&apos;m Tim
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[25]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">GradStudent</span><span class="p">(</span> <span class="n">Student</span> <span class="p">):</span>
-    <span class="k">pass</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[32]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">fname</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">lname</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="n">fname</span><span class="p">,</span> <span class="n">lname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="o">=</span> <span class="n">fname</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">last_name</span> <span class="o">=</span> <span class="n">lname</span>
-        <span class="k">print</span> <span class="s">&quot;done making new student&quot;</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_name</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[33]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">emptyy</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&#39;christopher&#39;</span><span class="p">,</span> <span class="s">&#39;coletta&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  christopher coletta
-done making new student
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[44]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="n">list_of_students</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">line</span> <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">grades</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> \
-				<span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
-		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[36]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">raw_data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;Coletta	Chris	me@chriscoletta.com	88	87	86	85	81</span>
-<span class="s">Busby	Ben	ben@busby.com	98	99	90	100	95</span>
-<span class="s">Dryga	Anatoly	adryga@gmail.com	77	74	72	77	78</span>
-<span class="s">Shirley	Matt	mdshw5@gmail.com	61	69	60	64	67&quot;&quot;&quot;</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[45]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">):</span>
-    <span class="n">Student</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  Chris Coletta
-making a new Student named,  Ben Busby
-making a new Student named,  Anatoly Dryga
-making a new Student named,  Matt Shirley
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="the-special-attribute-__dict__">The special attribute <code>__dict__</code></h3>
+<p>For a given object <code>the_object</code>, if you want to see what its instance's data attributes are, print out <code>the_object.__dict__</code></p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2443,7 +2398,7 @@ making a new Student named,  Matt Shirley
 In&nbsp;[46]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
+<div class="highlight"><pre><span class="n">matt</span><span class="o">.</span><span class="n">__dict__</span>
 </pre></div>
 
 </div>
@@ -2459,10 +2414,7 @@ In&nbsp;[46]:
 
 
 <pre>
-[&lt;__main__.Student at 0x10256f250&gt;,
- &lt;__main__.Student at 0x10256fc50&gt;,
- &lt;__main__.Student at 0x10256f950&gt;,
- &lt;__main__.Student at 0x10256fe90&gt;]
+{&apos;fname&apos;: &apos;Matt&apos;, &apos;lname&apos;: &apos;Shirley&apos;}
 </pre>
 
 </div>
@@ -2471,6 +2423,151 @@ In&nbsp;[46]:
 </div>
 </div>
 
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="instance-attributes-versus-class-attributes"><a name="classattribs">Instance attributes versus class attributes</a></h2>
+<p>When you instantiate an object and assign a value to one of it's data attributes, that value is not shared with the other instances. However sometimes it's useful to have each instance share one data field across all instances. For example, it might be useful to be able to have access to a list of all instances of a particular class. A shared data field is called a <em>class attribute</em>. To define a class attribute, just put the attribute somewhere outside any defined functions.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[105]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    
+    <span class="c"># This is a class attribute; a single list shared by all instances</span>
+    <span class="n">list_of_students</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">first_name</span><span class="o">=</span><span class="s">&quot;&quot;</span><span class="p">,</span> <span class="n">last_name</span><span class="o">=</span><span class="s">&quot;&quot;</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="n">first_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span> <span class="o">=</span> <span class="n">last_name</span>
+        <span class="k">print</span> <span class="s">&quot;Data parsed for student&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
+        <span class="c"># In this case we use a list as a class attribute to keep track of</span>
+        <span class="c"># all the Student objects instantiated. </span>
+        <span class="c"># Add myself to the global list of all students:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
+		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
+    <span class="k">def</span> <span class="nf">PrintInfo</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;{}, {}: </span><span class="se">\t</span><span class="s"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[106]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># See how the list changes every time we create a new Student?</span>
+<span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Chris&quot;</span><span class="p">,</span> <span class="s">&quot;Coletta&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">chris</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">)</span>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Ben&quot;</span><span class="p">,</span> <span class="s">&quot;Busby&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">chris</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">)</span>
+<span class="n">ben</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Anatoly&quot;</span><span class="p">,</span> <span class="s">&quot;Dryga&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="nb">len</span><span class="p">(</span><span class="n">chris</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_stream output_stdout">
+<pre>
+Data parsed for student Chris Coletta
+1
+Data parsed for student Ben Busby
+2
+Data parsed for student Anatoly Dryga
+3
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[107]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># The list is shared across all instances</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">list_of_students</span> <span class="ow">is</span> <span class="n">ben</span><span class="o">.</span><span class="n">list_of_students</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[107]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[108]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Another way to get at the list is via the class name:</span>
+<span class="n">chris</span><span class="o">.</span><span class="n">list_of_students</span> <span class="ow">is</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[108]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+True
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="case-study-functional-vs.-object-oriented-approaches-to-parsing-data"><a name="casestudy">Case Study: Functional vs. Object Oriented approaches to parsing data</a></h2>
+<p>Now we will illustrate the different how the Object Oriented programming paradigm from the functional programming paradigm we've been using thus far this semester. For the purposes of this demo, let's write some tab-separated student data to a file:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2478,8 +2575,53 @@ In&nbsp;[46]:
 In&nbsp;[47]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">for</span> <span class="n">stud</span> <span class="ow">in</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">:</span>
-    <span class="n">stud</span><span class="o">.</span><span class="n">SayHi</span><span class="p">()</span>
+<div class="highlight"><pre><span class="n">raw_data</span> <span class="o">=</span> <span class="s">&quot;&quot;&quot;Coletta	Chris	me@chriscoletta.com	88	87	86	85	81</span>
+<span class="s">Busby	Ben	ben@busby.com	98	99	90	100	95</span>
+<span class="s">Dryga	Anatoly	adryga@gmail.com	77	74	72	77	78</span>
+<span class="s">Shirley	Matt	mdshw5@gmail.com	61	69	60	64	67&quot;&quot;&quot;</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span> <span class="s">&#39;student_data.txt&#39;</span><span class="p">,</span> <span class="s">&#39;w&#39;</span> <span class="p">)</span> <span class="k">as</span> <span class="n">data_file</span><span class="p">:</span>
+    <span class="n">data_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span> <span class="n">raw_data</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="functional-programming-version">Functional programming version</h3>
+<p>You could try to use a <code>dict</code> to emulate class functionality, but it's clunky especially if you're trying to keep functions related to a certain data type bundled with the data. The following program uses functional programming to read student data from a file, parse the data, save the data into a list of <code>dict</code>s, calculate the final grades, and print out the data.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[92]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="n">hw1</span><span class="p">,</span> <span class="n">hw2</span><span class="p">,</span> <span class="n">hw3</span><span class="p">,</span> <span class="n">hw4</span><span class="p">,</span> <span class="n">final_proj</span> <span class="p">):</span>
+	<span class="k">return</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="n">hw1</span> <span class="o">+</span> <span class="n">hw2</span> <span class="o">+</span> <span class="n">hw3</span> <span class="o">+</span> <span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="n">final_proj</span>
+
+<span class="k">def</span> <span class="nf">CreateStudentFromLineOfText</span><span class="p">(</span> <span class="n">the_line</span> <span class="p">):</span>
+    <span class="n">stu</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">stu</span><span class="p">[</span><span class="s">&#39;lname&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;fname&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;email&#39;</span><span class="p">],</span> <span class="n">the_grades</span> <span class="o">=</span> <span class="n">the_line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+    <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw1&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw2&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw3&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw4&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;final_proj&#39;</span><span class="p">]</span> <span class="o">=</span> \
+			         <span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">the_grades</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="p">]</span>
+    <span class="n">stu</span><span class="p">[</span><span class="s">&#39;final_grade&#39;</span><span class="p">]</span> <span class="o">=</span> \
+        <span class="n">CalcFinalGrade</span><span class="p">(</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw1&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw2&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw3&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;hw4&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;final_proj&#39;</span><span class="p">]</span> <span class="p">)</span>
+    <span class="k">print</span> <span class="s">&quot;Data parsed for student&quot;</span><span class="p">,</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;fname&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;lname&#39;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">stu</span>
+
+<span class="k">def</span> <span class="nf">PrintStudentInfo</span><span class="p">(</span> <span class="n">stu</span> <span class="p">):</span>
+    <span class="k">print</span> <span class="s">&#39;{}, {}: </span><span class="se">\t</span><span class="s"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">stu</span><span class="p">[</span><span class="s">&#39;lname&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;fname&#39;</span><span class="p">],</span> <span class="n">stu</span><span class="p">[</span><span class="s">&#39;final_grade&#39;</span><span class="p">])</span>
+
+<span class="n">student_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span> <span class="s">&#39;student_data.txt&#39;</span> <span class="p">)</span> <span class="k">as</span> <span class="n">the_file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">the_line</span> <span class="ow">in</span> <span class="n">the_file</span><span class="p">:</span>
+        <span class="n">student_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span> <span class="n">CreateStudentFromLineOfText</span><span class="p">(</span> <span class="n">the_line</span> <span class="p">)</span> <span class="p">)</span>
+
+<span class="k">for</span> <span class="n">stu</span> <span class="ow">in</span> <span class="n">student_list</span><span class="p">:</span>
+    <span class="n">PrintStudentInfo</span><span class="p">(</span><span class="n">stu</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -2492,10 +2634,14 @@ In&nbsp;[47]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-Hi! I&apos;m Chris
-Hi! I&apos;m Ben
-Hi! I&apos;m Anatoly
-Hi! I&apos;m Matt
+Data parsed for student Chris Coletta
+Data parsed for student Ben Busby
+Data parsed for student Anatoly Dryga
+Data parsed for student Matt Shirley
+Coletta, Chris: 	 85.4
+Busby, Ben: 	 96.4
+Dryga, Anatoly: 	 75.6
+Shirley, Matt: 	 64.2
 
 </pre>
 </div>
@@ -2505,132 +2651,39 @@ Hi! I&apos;m Matt
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[53]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">new_stud</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;&quot;&quot;Vega	Hugo	me@hugo.com	88	87	86	85	91&quot;&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  Hugo Vega
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here's the exact same thing, encapsulating all the aspects of the noun student into the class <code>Student</code>:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[49]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">news</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;&quot;&quot;Coletta	Chris	me@chriscoletta.com	88	87	86	85	81&quot;&quot;&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  Chris Coletta
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[55]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">new_stud</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[55]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-&lt;__main__.Student at 0x1025775d0&gt;
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[56]:
+In&nbsp;[73]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    
     <span class="n">list_of_students</span> <span class="o">=</span> <span class="p">[]</span>
+    
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">line</span> <span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">grades</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> \
 				<span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CalcFinalGrade</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Data parsed for student&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
+        
     <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
 		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="n">student_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
-        <span class="k">return</span> <span class="s">&quot;Student # {} {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">student_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span> 
-</pre></div>
+    <span class="k">def</span> <span class="nf">PrintInfo</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;{}, {}: </span><span class="se">\t</span><span class="s"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="p">)</span>
+        
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span> <span class="s">&#39;student_data.txt&#39;</span> <span class="p">)</span> <span class="k">as</span> <span class="n">the_file</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">the_line</span> <span class="ow">in</span> <span class="n">the_file</span><span class="p">:</span>
+        <span class="n">Student</span><span class="p">(</span> <span class="n">the_line</span> <span class="p">)</span>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[57]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">):</span>
-    <span class="n">Student</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">stu</span> <span class="ow">in</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">:</span>
+    <span class="n">stu</span><span class="o">.</span><span class="n">PrintInfo</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -2643,10 +2696,14 @@ In&nbsp;[57]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-making a new Student named,  Chris Coletta
-making a new Student named,  Ben Busby
-making a new Student named,  Anatoly Dryga
-making a new Student named,  Matt Shirley
+Data parsed for student Chris Coletta
+Data parsed for student Ben Busby
+Data parsed for student Anatoly Dryga
+Data parsed for student Matt Shirley
+Coletta, Chris: 	 85.4
+Busby, Ben: 	 96.4
+Dryga, Anatoly: 	 75.6
+Shirley, Matt: 	 64.2
 
 </pre>
 </div>
@@ -2656,435 +2713,10 @@ making a new Student named,  Matt Shirley
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[58]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[58]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-[Student # 0 Chris Coletta,
- Student # 1 Ben Busby,
- Student # 2 Anatoly Dryga,
- Student # 3 Matt Shirley]
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[59]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[60]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[60]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-0
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[61]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[61]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-3
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[62]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;d&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[63]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[63]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-2
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[64]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">some_list</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s">&#39;e&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ValueError</span>                                Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-64-ba35afe22bc2&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansired"> </span>some_list<span class="ansiblue">.</span>index<span class="ansiblue">(</span><span class="ansiblue">&apos;e&apos;</span><span class="ansiblue">)</span><span class="ansiblue"></span>
-
-<span class="ansired">ValueError</span>: &apos;e&apos; is not in list</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[65]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
-    <span class="n">list_of_students</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">line</span> <span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">grades</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> \
-				<span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span> <span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
-    <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
-		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
-    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="n">student_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
-        <span class="k">return</span> <span class="s">&quot;Student # {} {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">student_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[66]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">):</span>
-    <span class="n">Student</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-making a new Student named,  Chris Coletta
-making a new Student named,  Ben Busby
-making a new Student named,  Anatoly Dryga
-making a new Student named,  Matt Shirley
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[67]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[67]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-Student # 0 Chris Coletta
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[68]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">len</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[68]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-85
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[69]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[70]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">chris</span><span class="o">.</span><span class="n">__class__</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[70]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-__main__.Student
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[71]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">type</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[71]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-__main__.Student
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[72]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">chris</span><span class="o">.</span><span class="n">__dict__</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[72]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-{&apos;email&apos;: &apos;me@chriscoletta.com&apos;,
- &apos;final_proj&apos;: 81.0,
- &apos;fname&apos;: &apos;Chris&apos;,
- &apos;hw1&apos;: 88.0,
- &apos;hw2&apos;: 87.0,
- &apos;hw3&apos;: 86.0,
- &apos;hw4&apos;: 85.0,
- &apos;lname&apos;: &apos;Coletta&apos;}
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="more-about-special-methods"><a name="special">More about &quot;special&quot; methods</a></h2>
+<p>The special methods are &quot;hooks&quot; which are called at certain times. Certain features of the Python language get &quot;turned-on&quot; when you implement them. The more special methods you implement for your class, the more your class will look and behave like a built-in Python object. For example, you can make your object emulate an iterable if you implement the .</p>
+<p>One of the easiest and most useful methods you can implement for your class is the <code>__repr__</code> or string representation method, which defines what gets printed out when you try to print your object.</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -3092,7 +2724,9 @@ In&nbsp;[72]:
 In&nbsp;[74]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
+<div class="highlight"><pre><span class="c"># Remember, we set up a class attribute on the Student class to</span>
+<span class="c"># keep track of all the instances of Student?</span>
+<span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
 </pre></div>
 
 </div>
@@ -3108,36 +2742,10 @@ In&nbsp;[74]:
 
 
 <pre>
-[&apos;CalcFinalGrade&apos;,
- &apos;SayHi&apos;,
- &apos;__class__&apos;,
- &apos;__delattr__&apos;,
- &apos;__dict__&apos;,
- &apos;__doc__&apos;,
- &apos;__format__&apos;,
- &apos;__getattribute__&apos;,
- &apos;__hash__&apos;,
- &apos;__init__&apos;,
- &apos;__len__&apos;,
- &apos;__module__&apos;,
- &apos;__new__&apos;,
- &apos;__reduce__&apos;,
- &apos;__reduce_ex__&apos;,
- &apos;__repr__&apos;,
- &apos;__setattr__&apos;,
- &apos;__sizeof__&apos;,
- &apos;__str__&apos;,
- &apos;__subclasshook__&apos;,
- &apos;__weakref__&apos;,
- &apos;email&apos;,
- &apos;final_proj&apos;,
- &apos;fname&apos;,
- &apos;hw1&apos;,
- &apos;hw2&apos;,
- &apos;hw3&apos;,
- &apos;hw4&apos;,
- &apos;list_of_students&apos;,
- &apos;lname&apos;]
+[&lt;__main__.Student at 0x102574350&gt;,
+ &lt;__main__.Student at 0x102574290&gt;,
+ &lt;__main__.Student at 0x102574310&gt;,
+ &lt;__main__.Student at 0x102574390&gt;]
 </pre>
 
 </div>
@@ -3147,202 +2755,13 @@ In&nbsp;[74]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[75]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[75]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
--1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All that memory address gobbledy-gook isn't very helpful in telling us which object contains which student's info. So let's again redefine the class, implementing the <code>__repr__</code> which will get called whenever we print the object to the screen. And let's also make it fancy and have it print out which student it is in terms of class attribute instance list index order:</p>
 </div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[76]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[76]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-0
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[77]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[77]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
-1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[78]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;b&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[78]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
--1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[79]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span> <span class="s">&#39;chris&#39;</span><span class="p">,</span> <span class="s">&#39;doug&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[79]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
--1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[80]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">cmp</span><span class="p">(</span> <span class="s">&#39;chris&#39;</span><span class="p">,</span> <span class="s">&#39;doug&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt output_prompt">
-    Out[80]:</div>
-<div class="box-flex1 output_subarea output_pyout">
-
-
-<pre>
--1
-</pre>
-
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[91]:
+In&nbsp;[117]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
@@ -3351,22 +2770,18 @@ In&nbsp;[91]:
         <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">grades</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> \
 				<span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CalcFinalGrade</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="k">print</span> <span class="s">&quot;making a new Student named, &quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
-    <span class="k">def</span> <span class="nf">SayHi</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;Hi! I&#39;m {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Data parsed for student&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
     <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
 		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
 		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
+    <span class="k">def</span> <span class="nf">PrintInfo</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;{}, {}: </span><span class="se">\t</span><span class="s"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="p">)</span>
+    <span class="c"># ******* NEW! ***********</span>
     <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
         <span class="n">student_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
-        <span class="k">return</span> <span class="s">&quot;Student # {} {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">student_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">__cmp__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">print</span> <span class="s">&quot;sorting {} and {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span>
-        <span class="n">first_sort_val</span> <span class="o">=</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">first_sort_val</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">first_sort_val</span>
-        <span class="k">return</span> <span class="nb">cmp</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grade</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">grade</span><span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;Student #{}: {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">student_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3376,7 +2791,7 @@ In&nbsp;[91]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[92]:
+In&nbsp;[118]:
 </div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">raw_data</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">):</span>
@@ -3393,10 +2808,10 @@ In&nbsp;[92]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-making a new Student named,  Chris Coletta
-making a new Student named,  Ben Busby
-making a new Student named,  Anatoly Dryga
-making a new Student named,  Matt Shirley
+Data parsed for student Chris Coletta
+Data parsed for student Ben Busby
+Data parsed for student Anatoly Dryga
+Data parsed for student Matt Shirley
 
 </pre>
 </div>
@@ -3409,10 +2824,119 @@ making a new Student named,  Matt Shirley
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[98]:
+In&nbsp;[111]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span> <span class="p">)</span>
+<div class="highlight"><pre><span class="c"># The __repr__ functions defines the pretty print style</span>
+<span class="c"># See how the output here is different from before?</span>
+<span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[111]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[Student #0: Chris Coletta,
+ Student #1: Ben Busby,
+ Student #2: Anatoly Dryga,
+ Student #3: Matt Shirley]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here's a crazy example: when you implement the <code>__len__</code> special method, that unlocks the <code>len()</code> functionality for that object. Not that it makes any sense to do so, but let's define the &quot;length&quot; of a student to be the number of characters in the student's name:</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[113]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Not defined yet</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt"></div>
+<div class="box-flex1 output_subarea output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-113-6c32904d890e&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># Not defined yet</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span>len<span class="ansiblue">(</span>chris<span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansired">TypeError</span>: object of type &apos;Student&apos; has no len()</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[114]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">Student</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="n">list_of_students</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">line</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">email</span><span class="p">,</span> <span class="n">grades</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span> <span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">,</span> <span class="mi">3</span> <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> \
+				<span class="p">[</span> <span class="nb">float</span><span class="p">(</span> <span class="n">grade</span> <span class="p">)</span> <span class="k">for</span> <span class="n">grade</span> <span class="ow">in</span> <span class="n">grades</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;</span><span class="se">\t</span><span class="s">&#39;</span><span class="p">)</span> <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">CalcFinalGrade</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;Data parsed for student&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span>
+    <span class="k">def</span> <span class="nf">CalcFinalGrade</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="o">=</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw3</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">hw4</span> <span class="p">)</span> <span class="o">/</span> <span class="mi">4</span> \
+		                   <span class="o">+</span> <span class="mf">0.2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_proj</span>
+    <span class="k">def</span> <span class="nf">PrintInfo</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&#39;{}, {}: </span><span class="se">\t</span><span class="s"> {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">final_grade</span> <span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="n">student_number</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list_of_students</span><span class="o">.</span><span class="n">index</span><span class="p">(</span> <span class="bp">self</span> <span class="p">)</span>
+        <span class="k">return</span> <span class="s">&quot;Student #{}: {} {}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">student_number</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span>
+    <span class="c"># ******* NEW! ***********</span>
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s">&quot;Defining the length of a Student object&quot;</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">fname</span> <span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">lname</span> <span class="p">)</span> <span class="c"># fname and lname are strings</span>
+                                                     <span class="c"># and len() is already defined for strings</span>
+</pre></div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[115]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">chris</span> <span class="o">=</span> <span class="n">Student</span><span class="p">(</span><span class="s">&quot;Coletta	Chris	me@chriscoletta.com	88	87	86	85	81&quot;</span><span class="p">)</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">chris</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3425,32 +2949,19 @@ In&nbsp;[98]:
 <div class="hbox output_area"><div class="prompt"></div>
 <div class="box-flex1 output_subarea output_stream output_stdout">
 <pre>
-sorting Ben and Chris
-sorting Anatoly and Ben
-sorting Anatoly and Chris
-sorting Matt and Chris
-sorting Matt and Anatoly
-sorting Chris and Ben
-sorting Chris and Anatoly
-sorting Ben and Anatoly
-sorting Chris and Matt
-sorting Ben and Matt
-sorting Anatoly and Matt
+Data parsed for student Chris Coletta
 
 </pre>
 </div>
 </div>
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[98]:</div>
+    Out[115]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[Student # 1 Ben Busby,
- Student # 0 Chris Coletta,
- Student # 2 Anatoly Dryga,
- Student # 3 Matt Shirley]
+12
 </pre>
 
 </div>
@@ -3460,13 +2971,33 @@ sorting Anatoly and Matt
 </div>
 
 </div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Here's another example. The Python addition operator <code>+</code> &quot;turns on&quot; for your object when you implement the <code>__add__</code>. Let's create an object that emulates the adding behavior of a built-in Python integer:</p>
+</div>
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[87]:
+In&nbsp;[80]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">addable_thing</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+
+  <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">value</span> <span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">value</span>
+
+  <span class="k">def</span> <span class="nf">AddMeWithAnotherThing</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span> <span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="p">(</span> <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">+</span> <span class="n">other</span><span class="o">.</span><span class="n">val</span> <span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span> <span class="p">):</span>
+    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">AddMeWithAnotherThing</span><span class="p">(</span> <span class="n">other</span> <span class="p">)</span>
+
+  <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s">&quot;addable_thing(&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span>
+
+<span class="n">val1</span> <span class="o">=</span> <span class="n">addable_thing</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">val2</span> <span class="o">=</span> <span class="n">addable_thing</span><span class="p">(</span><span class="mi">53</span><span class="p">)</span>
+
+<span class="n">val1</span> <span class="o">+</span> <span class="n">val2</span>
 </pre></div>
 
 </div>
@@ -3477,15 +3008,12 @@ In&nbsp;[87]:
 
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[87]:</div>
+    Out[80]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[Student # 0 Chris Coletta,
- Student # 1 Ben Busby,
- Student # 2 Anatoly Dryga,
- Student # 3 Matt Shirley]
+addable_thing(95)
 </pre>
 
 </div>
@@ -3498,43 +3026,11 @@ In&nbsp;[87]:
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[99]:
+In&nbsp;[81]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre><span class="n">help</span><span class="p">(</span><span class="nb">sorted</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-
-<div class="vbox output_wrapper">
-<div class="output vbox">
-
-
-<div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
-<pre>
-Help on built-in function sorted in module __builtin__:
-
-sorted(...)
-    sorted(iterable, cmp=None, key=None, reverse=False) --&gt; new sorted list
-
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell vbox">
-<div class="input hbox">
-<div class="prompt input_prompt">
-In&nbsp;[97]:
-</div>
-<div class="input_area box-flex1">
-<div class="highlight"><pre><span class="nb">sorted</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">,</span> <span class="nb">cmp</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="nb">cmp</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">lname</span><span class="p">,</span><span class="n">y</span><span class="o">.</span><span class="n">lname</span><span class="p">)</span> <span class="p">)</span>
+<div class="highlight"><pre><span class="c"># The subtract operator still hasn&#39;t been implemented, though!</span>
+<span class="n">val2</span> <span class="o">-</span> <span class="n">val1</span>
 </pre></div>
 
 </div>
@@ -3545,29 +3041,56 @@ In&nbsp;[97]:
 
 
 <div class="hbox output_area"><div class="prompt"></div>
-<div class="box-flex1 output_subarea output_stream output_stdout">
+<div class="box-flex1 output_subarea output_pyerr">
 <pre>
-sorting Chris and Ben
-sorting Chris and Anatoly
-sorting Ben and Anatoly
-sorting Chris and Matt
-sorting Ben and Matt
-sorting Anatoly and Matt
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-81-88bec6e9fd16&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># The subtract operator still hasn&apos;t been implemented, though!</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 2</span><span class="ansired"> </span>val2 <span class="ansiblue">-</span> val1<span class="ansiblue"></span>
 
-</pre>
+<span class="ansired">TypeError</span>: unsupported operand type(s) for -: &apos;addable_thing&apos; and &apos;addable_thing&apos;</pre>
 </div>
 </div>
+
+</div>
+</div>
+
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For a comprehensive list of all the special method names, as well as the shorthand Python syntax that the special methods hook into, refer to the <a href="https://docs.python.org/2/reference/datamodel.html#special-method-names">Special Method Names</a> section of the Python documentation. A good place to start would be to check out the <a href="https://docs.python.org/2/reference/datamodel.html#emulating-numeric-types">Emulating Numeric Types</a> subsection.</p>
+</div>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="sorting-user-defined-objects"><a name="sorting">Sorting user-defined objects</a></h2>
+<p>In class I showed one way to change the sort order by implementing the <code>__cmp__</code> method. Forget about that, it's deprecated. Just use the key/lambda method of sorting objects like I demonstrated a few classes back. For more info see the <a href="https://wiki.python.org/moin/HowTo/Sorting">Sorting Mini-How-To</a> in the Python documentation.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[120]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># the list currently ordred by creation</span>
+<span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
 
 <div class="hbox output_area"><div class="prompt output_prompt">
-    Out[97]:</div>
+    Out[120]:</div>
 <div class="box-flex1 output_subarea output_pyout">
 
 
 <pre>
-[Student # 1 Ben Busby,
- Student # 0 Chris Coletta,
- Student # 2 Anatoly Dryga,
- Student # 3 Matt Shirley]
+[Student #0: Chris Coletta,
+ Student #1: Ben Busby,
+ Student #2: Anatoly Dryga,
+ Student #3: Matt Shirley]
 </pre>
 
 </div>
@@ -3580,11 +3103,70 @@ sorting Anatoly and Matt
 <div class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[121]:
 </div>
 <div class="input_area box-flex1">
-<div class="highlight"><pre>
+<div class="highlight"><pre><span class="c"># Now sort based on last name</span>
+<span class="nb">sorted</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">student</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">lname</span> <span class="p">)</span>
 </pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[121]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[Student #1: Ben Busby,
+ Student #0: Chris Coletta,
+ Student #2: Anatoly Dryga,
+ Student #3: Matt Shirley]
+</pre>
+
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">
+In&nbsp;[122]:
+</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="c"># Now sort based on final grade</span>
+<span class="nb">sorted</span><span class="p">(</span> <span class="n">Student</span><span class="o">.</span><span class="n">list_of_students</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">student</span><span class="p">:</span> <span class="n">student</span><span class="o">.</span><span class="n">final_grade</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+
+<div class="vbox output_wrapper">
+<div class="output vbox">
+
+
+<div class="hbox output_area"><div class="prompt output_prompt">
+    Out[122]:</div>
+<div class="box-flex1 output_subarea output_pyout">
+
+
+<pre>
+[Student #3: Matt Shirley,
+ Student #2: Anatoly Dryga,
+ Student #0: Chris Coletta,
+ Student #1: Ben Busby]
+</pre>
+
+</div>
+</div>
 
 </div>
 </div>
