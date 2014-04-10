@@ -3,7 +3,20 @@
 <head>
 
 <meta charset="utf-8" />
-<title>BIOF309_OOP_Part2</title>
+<title>BIOF309 Object Oriented Programming, Part 1</title>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-23176059-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -2009,7 +2022,7 @@ The function made me!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[26]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2021,59 +2034,36 @@ In&nbsp;[]:
         <span class="n">ret_val</span> <span class="o">=</span> <span class="n">input_function</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">ret_val</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">TheReplacementFunction</span>
+</pre></div>
 
-<span class="k">def</span> <span class="nf">OriginalFunction</span><span class="p">():</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following cells are totally equivalent:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[28]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">DecoratedFunction</span><span class="p">():</span>
     <span class="k">print</span> <span class="s">&quot;Now running original function!&quot;</span>
     <span class="k">return</span> <span class="mi">1</span>
 
-<span class="n">decorated</span> <span class="o">=</span> <span class="n">DecorateThis</span><span class="p">(</span> <span class="n">OriginalFunction</span> <span class="p">)</span>
-</pre></div>
+<span class="n">ResultFunction</span> <span class="o">=</span> <span class="n">DecorateThis</span><span class="p">(</span> <span class="n">DecoratedFunction</span> <span class="p">)</span>
 
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[16]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="k">print</span> <span class="n">OriginalFunction</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-Now running original function!
-1
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[17]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="k">print</span> <span class="n">decorated</span><span class="p">()</span>
+<span class="n">ResultFunction</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -2089,10 +2079,21 @@ In&nbsp;[17]:
 <pre>
 Now running replacement function!
 Now running original function!
-2
 
 </pre>
 </div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[28]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+2
+</pre>
+</div>
+
 </div>
 
 </div>
@@ -2102,14 +2103,49 @@ Now running original function!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[29]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># Totally equivalent:</span>
+<div class="highlight"><pre><span class="c"># or</span>
+<span class="nd">@DecorateThis</span>
+<span class="k">def</span> <span class="nf">ResultFunction</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Now running original function!&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="n">ResultFunction</span><span class="p">()</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Now running replacement function!
+Now running original function!
+
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[29]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+2
+</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -2119,8 +2155,22 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="right-now-in-class-exercise-">Right now: in-class Exercise:</h3>
 <ul>
-<li>Example: define a decorator which calls the decorated function 10 times</li>
+<li>Define a decorator which calls a decorated function 10 times.</li>
+</ul>
+<hr>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="back-to-the-constructor-problem-">Back to the Constructor problem:</h3>
+<ul>
+<li>Goal: Trying to create multiple ways to initialize your new class</li>
 </ul>
 </div>
 </div>
@@ -2323,18 +2373,22 @@ In&nbsp;[2]:
 <li>Factor out common code</li>
 <li>Extend the functionality of an existing class without reimplementing the whole class.</li>
 </ol>
-<p>There are three ways that the parent and child classes can interact</p>
+<p>There are three ways that the parent and child classes can interact:</p>
 <ol>
-<li>Actions on the child imply an action on the parent.</li>
-<li>Actions on the child override the action on the parent.</li>
-<li><p>Actions on the child alter the action on the parent.</p>
+<li>Actions on the child imply an action on the parent.<ul>
+<li>Default</li>
+</ul>
 </li>
-<li><p>You can subclass built in types!</p>
-<ul>
-<li>e.g., extend list object to contain methods returning only the odds or only the evens.</li>
+<li>Actions on the child override the action on the parent.<ul>
+<li>Override = reimplement the method on the child class</li>
+</ul>
+</li>
+<li>Actions on the child alter the action on the parent.<ul>
+<li>call <code>super()</code> in the subclass to get the parent</li>
 </ul>
 </li>
 </ol>
+<p>You can subclass built in types! E.g., extend list object to contain methods returning only the odds or only the evens.</p>
 </div>
 </div>
 </div>
@@ -2361,11 +2415,258 @@ In&nbsp;[18]:
 </div>
 
 </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[20]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">e_list</span> <span class="o">=</span> <span class="n">EnhancedList</span><span class="p">(</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[21]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">e_list</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[21]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[22]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">e_list</span><span class="o">.</span><span class="n">ReturnOdds</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[22]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[0, 2, 4, 6, 8]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">e_list</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[23]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+[&apos;ReturnEvens&apos;,
+ &apos;ReturnOdds&apos;,
+ &apos;__add__&apos;,
+ &apos;__class__&apos;,
+ &apos;__contains__&apos;,
+ &apos;__delattr__&apos;,
+ &apos;__delitem__&apos;,
+ &apos;__delslice__&apos;,
+ &apos;__dict__&apos;,
+ &apos;__doc__&apos;,
+ &apos;__eq__&apos;,
+ &apos;__format__&apos;,
+ &apos;__ge__&apos;,
+ &apos;__getattribute__&apos;,
+ &apos;__getitem__&apos;,
+ &apos;__getslice__&apos;,
+ &apos;__gt__&apos;,
+ &apos;__hash__&apos;,
+ &apos;__iadd__&apos;,
+ &apos;__imul__&apos;,
+ &apos;__init__&apos;,
+ &apos;__iter__&apos;,
+ &apos;__le__&apos;,
+ &apos;__len__&apos;,
+ &apos;__lt__&apos;,
+ &apos;__module__&apos;,
+ &apos;__mul__&apos;,
+ &apos;__ne__&apos;,
+ &apos;__new__&apos;,
+ &apos;__reduce__&apos;,
+ &apos;__reduce_ex__&apos;,
+ &apos;__repr__&apos;,
+ &apos;__reversed__&apos;,
+ &apos;__rmul__&apos;,
+ &apos;__setattr__&apos;,
+ &apos;__setitem__&apos;,
+ &apos;__setslice__&apos;,
+ &apos;__sizeof__&apos;,
+ &apos;__str__&apos;,
+ &apos;__subclasshook__&apos;,
+ &apos;__weakref__&apos;,
+ &apos;append&apos;,
+ &apos;count&apos;,
+ &apos;extend&apos;,
+ &apos;index&apos;,
+ &apos;insert&apos;,
+ &apos;pop&apos;,
+ &apos;remove&apos;,
+ &apos;reverse&apos;,
+ &apos;sort&apos;]
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[32]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">class</span> <span class="nc">ParentClass</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">A_Method</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Parent method!&quot;</span>
+
+<span class="c"># Overrides parent method A_Method      </span>
+<span class="k">class</span> <span class="nc">ChildClass1</span><span class="p">(</span> <span class="n">ParentClass</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">A_Method</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Child 1 method!&quot;</span>
+        
+<span class="c"># Modifies parent behavior by calling super()</span>
+<span class="k">class</span> <span class="nc">ChildClass2</span><span class="p">(</span> <span class="n">ParentClass</span> <span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">_helper_method</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Child 2 method&quot;</span>
+        
+    <span class="k">def</span> <span class="nf">A_Method</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ChildClass2</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">A_Method</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_helper_method</span><span class="p">()</span>
+        
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[33]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">thing</span> <span class="o">=</span> <span class="n">ChildClass2</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[34]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">thing</span><span class="o">.</span><span class="n">A_Method</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Parent method!
+Child 2 method
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="more-inheritance-stuff">More inheritance stuff</h3>
 <ul>
 <li>Inheritance sets up an <a href="http://en.wikipedia.org/wiki/Is-a">Is-a</a> relationship between classes<ul>
 <li>E.g., A salmon is a fish.</li>
@@ -2378,15 +2679,46 @@ In&nbsp;[18]:
 <li>Python function <code>hasa( classa, classb )</code> returns <code>True</code> if <code>classa</code> has a data member of type <code>classb</code>.</li>
 </ul>
 </li>
-<li>isinstance() vs. type()
-issubclass()
-overloaded
-multiple inheritance many frown upon this
-using super()
-help() will show what methods are defined where</li>
+<li>Your subclass can inherit from more than one class. This is called <a href="http://en.wikipedia.org/wiki/Multiple_inheritance">multiple inheritance</a>. Many frown upon this.</li>
+<li><code>help()</code> will show what methods are defined where.</li>
 </ul>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[24]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># isinstance(the_obj, the_type) returns True if the_obj is of type the_type</span>
+<span class="nb">isinstance</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[24]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+True
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
