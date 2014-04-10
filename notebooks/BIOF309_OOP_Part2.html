@@ -1699,8 +1699,11 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="-a-name-review-review-why-classes-again-code-"><a name="review">Review: why classes again?</code></h2>
-<p>Simple collections are good, but nested collections can be a pain </p>
+<h2 id="-a-name-review-review-why-classes-again-a-"><a name="review">Review: why classes again?</a></h2>
+<ul>
+<li>Simple collections are good, but nested collections can be a pain </li>
+<li><a href="http://en.wikipedia.org/wiki/Class_%28computer_programming%29">Class</a> - An extensible template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions, methods). </li>
+</ul>
 </div>
 </div>
 </div>
@@ -1824,16 +1827,301 @@ In&nbsp;[4]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="-a-name-ctor-the-constructor-problem-a-"><a name="ctor">The Constructor Problem</a></h2>
+<h2 id="-a-name-ctor-the-student-class-and-the-constructor-problem-a-"><a name="ctor">The Student class and the Constructor Problem</a></h2>
+<p>Up till now, to instantiate an object of type <code>Student</code>, we would pass to the constructor a single tab delimited string which would be parsed (because we were reading lines of input from a file):</p>
+<pre><code>ben = Student( &quot;Busby    Ben    ben@busby.com    98    99    90    100    95&quot; )
+</code></pre><p>What if there are two or more types of inputs from which a Student could have its data attributes initialized? For example, instantiate a <code>Student</code> class, initializing its data attributes using a nested tuple of tuples</p>
+<pre><code>ben = Student( (&#39;Busby&#39;, &#39;Ben&#39;, &#39;ben@busby.com&#39;, (98, 99, 90, 100), 95) )
+</code></pre><p>Solution: Define a method for each type of source data and use the <code>@classmethod</code> <a href="http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/">decorator</a>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="and-now-a-mini-unit-on-decorators-">And now, a mini-unit on decorators!</h3>
+<p>Decorators: just a function wrapper!</p>
+<p>To review:</p>
 <ul>
-<li>What if there are two or more types of inputs from which a Student could have its data attributes initialized?<ul>
-<li>Previously we would pass the constructor a single tab delimited string which would be parsed (because we were reading lines of input from a file)</li>
-<li>What if we 
-Use a <a href="http://simeonfranklin.com/blog/2012/jul/1/python-decorators-in-12-steps/">decorator</a>. dynamically alter the functionality of a function, method, or class without having to directly use subclasses or change the source code of the function being decorated</li>
+<li>First, in Python functions can be nested, i.e., declare one function inside of another!</li>
 </ul>
-</li>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">TheOuterFunction</span><span class="p">(</span> <span class="n">some_string</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;An example of a function that declares and uses a function inside its own scope&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">TheInnerFunction</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&quot;Printed from the inner function:&quot;</span><span class="p">,</span> <span class="n">some_string</span>
+
+    <span class="n">TheInnerFunction</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;Printed from the outer function.&quot;</span>
+    
+    
+<span class="n">TheOuterFunction</span><span class="p">(</span> <span class="s">&quot;What&#39;s goin on?!?&quot;</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Printed from the inner function: What&apos;s goin on?!?
+Printed from the outer function.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Second, functions can also take other functions ars arguments!</li>
 </ul>
-<p>example: define a decorator which calls the decorated function 10 times </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">ASimpleFunction</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;This was simple&quot;</span>
+
+<span class="k">def</span> <span class="nf">AFunctionWrapper</span><span class="p">(</span> <span class="n">some_function</span> <span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Entering wrapped function&quot;</span>
+    <span class="n">some_function</span><span class="p">()</span>
+    <span class="k">print</span> <span class="s">&quot;Finished running the wrapped function&quot;</span>
+    
+<span class="n">AFunctionWrapper</span><span class="p">(</span> <span class="n">ASimpleFunction</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Entering wrapped function
+This was simple
+Finished running the wrapped function
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Third, functions can return other functions!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">Make_Me_A_New_Function</span><span class="p">(</span> <span class="p">):</span>
+    <span class="k">print</span> <span class="s">&quot;Commin&#39; right up!&quot;</span>
+    <span class="k">def</span> <span class="nf">TheNewFunction</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&quot;The function made me!&quot;</span>
+    <span class="k">return</span> <span class="n">TheNewFunction</span>
+
+<span class="n">new_fn</span> <span class="o">=</span> <span class="n">Make_Me_A_New_Function</span><span class="p">()</span>
+
+<span class="n">new_fn</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Commin&apos; right up!
+The function made me!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Put all three together and you have a decorator!</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">DecorateThis</span><span class="p">(</span> <span class="n">input_function</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Runs the input function and returns its return value incremented by 1.&quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="nf">TheReplacementFunction</span><span class="p">():</span>
+        <span class="k">print</span> <span class="s">&quot;Now running replacement function!&quot;</span>
+        <span class="n">ret_val</span> <span class="o">=</span> <span class="n">input_function</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">ret_val</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">TheReplacementFunction</span>
+
+<span class="k">def</span> <span class="nf">OriginalFunction</span><span class="p">():</span>
+    <span class="k">print</span> <span class="s">&quot;Now running original function!&quot;</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="n">decorated</span> <span class="o">=</span> <span class="n">DecorateThis</span><span class="p">(</span> <span class="n">OriginalFunction</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[16]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">OriginalFunction</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Now running original function!
+1
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[17]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span> <span class="n">decorated</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Now running replacement function!
+Now running original function!
+2
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Totally equivalent:</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Example: define a decorator which calls the decorated function 10 times</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1955,7 +2243,7 @@ In&nbsp;[2]:
         <span class="n">the_new_student</span><span class="o">.</span><span class="n">fname</span> <span class="o">=</span> <span class="n">the_tuple</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">the_new_student</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="n">the_tuple</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">the_new_student</span><span class="o">.</span><span class="n">hw1</span><span class="p">,</span> <span class="n">the_new_student</span><span class="o">.</span><span class="n">hw2</span><span class="p">,</span> <span class="n">the_new_student</span><span class="o">.</span><span class="n">hw3</span><span class="p">,</span> \
-            <span class="n">the_new_student</span><span class="o">.</span><span class="n">hw4</span> <span class="o">=</span> <span class="n">the_tuple</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>	
+            <span class="n">the_new_student</span><span class="o">.</span><span class="n">hw4</span> <span class="o">=</span> <span class="n">the_tuple</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
         <span class="n">the_new_student</span><span class="o">.</span><span class="n">final_proj</span> <span class="o">=</span> <span class="n">the_tuple</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
         <span class="k">return</span> <span class="n">the_new_student</span>
 
@@ -1985,20 +2273,39 @@ In&nbsp;[2]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="-a-name-interface-data-hiding-and-interfaces-a-"><a name="interface">Data hiding and interfaces</a></h3>
-<p>Goal: create stable interface points for the different parts fo the program so that a change in one part of the program won&#39;t break the whole thing.</p>
-<p>Purpose: Code maintainability. Allows code reuse of components between projects. Testing of components. <a href="http://en.wikipedia.org/wiki/Software_architecture">Software architecture</a>.</p>
+<h2 id="-a-name-interface-oop-using-interfaces-and-data-hiding-a-"><a name="interface">OOP using interfaces and data hiding</a></h2>
+<p>Main idea: The current dominant paradigm in <a href="http://en.wikipedia.org/wiki/Software_architecture">software architecture</a> that involves create stable interface points for the different parts of the program so that a change in one part of the program won&#39;t break the entire program.</p>
+<p>Purpose:</p>
+<ul>
+<li>Prevent <a href="http://en.wikipedia.org/wiki/Spaghetti_code">spaghetti code</a> &lt;-<em>great article!</em></li>
+<li>Facilitates <a href="http://en.wikipedia.org/wiki/Maintainability">code maintainability</a>.</li>
+<li>Allows code reuse of components between projects.</li>
+<li>Allows different parts of the code to be tested in isolation, a.k.a., <a href="http://en.wikipedia.org/wiki/Unit_testing">unit testing</a>.</li>
+</ul>
 <p>Value: Obamacare technical issues.</p>
-<p><img src="http://www.chriscoletta.com/biof309/ObamacareTechnicalProblemsTimeArticleScreenshot.jpg" alt="&quot;The basic architecture of the site ... was flawed in design, poorly tested and ultimately not functional.&quot;"></p>
-<p>users of an object, called the <em><a href="http://en.wikipedia.org/wiki/Client_%28computing%29">client</a></em></p>
-<p><a href="http://en.wikipedia.org/wiki/Interface_%28computing%29#Software_interfaces_in_practice">interface</a> - allowing access only through well-defined entry points.</p>
-<p><a href="http://en.wikipedia.org/wiki/Information_hiding">information hiding</a> - prevent certain aspects of a class or software component from being accessible to its clients</p>
-<p><a href="http://en.wikipedia.org/wiki/Abstraction_%28computer_science%29">abstraction</a> - separating ideas from the details of how they work.</p>
-<p><a href="http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29">encapsulation</a>
-public vs. private</p>
-<p>Key concept: members and attributes used by the public, vs member and attributes that are meant for internal use only</p>
-<pre><code>by convention members starting with underscore not supposed to be used by the public 
-</code></pre><p>python convention: don&#39;t use variables/functions that start with _, i.e., those functions aren&#39;t part of the interface </p>
+<p><img src="http://www.chriscoletta.com/biof309/ObamacareTechnicalProblemsTimeArticleScreenshot.jpg" alt="&quot;The basic architecture of the site ... was flawed in design, poorly tested and ultimately not functional.&quot;">
+&quot;The basic architecture of the site ... was flawed in design, poorly tested and ultimately not functional.&quot;</p>
+<h3 id="more-oop-buzzwords">More OOP buzzwords</h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Client_%28computing%29">Client</a>- users of an object, e.g., the calling function.</li>
+<li><a href="http://en.wikipedia.org/wiki/Application_programming_interface">API</a> - Application Programming Interface - Specification for how software components should interact with each other. Includes:<ul>
+<li>Names of globals, e.g., math.pi, math.e</li>
+<li>Names of classes and relationships between, a.k.a. inherited, composed (see next section).</li>
+<li>For all functions and methods what are the <a href="http://en.wikipedia.org/wiki/Type_signature">function signatures</a>, a.k.a., function/method names, number and types of arguments, number and types of return values, types of exceptions that it might want to raise.</li>
+</ul>
+</li>
+<li><a href="http://en.wikipedia.org/wiki/Interface_%28computing%29#Software_interfaces_in_practice">Interface</a> - Kept separate from the <a href="http://en.wikipedia.org/wiki/Implementation#Computer_Science">implementation</a>, allowing access only through well-defined entry points.</li>
+<li><a href="http://en.wikipedia.org/wiki/Information_hiding">Information hiding</a> - prevent certain aspects of a class or software component from being accessible to its clients.</li>
+<li><a href="http://en.wikipedia.org/wiki/Abstraction_%28computer_science%29">Abstraction</a> - separating ideas from the details of how they work.</li>
+<li><a href="http://en.wikipedia.org/wiki/Encapsulation_%28object-oriented_programming%29">Encapsulation</a> - Hiding the values or state of a structured data object inside a class, preventing unauthorized parties&#39; direct access to them.</li>
+</ul>
+<h3 id="public-vs-private-attributes">Public vs. Private attributes</h3>
+<ul>
+<li>Public attributes: class attributes (data members and methods) used by the client (a.k.a. public</li>
+<li>Private attributes: meant for internal use only, i.e., is only the convern of the implementation, not the interface.</li>
+<li>In some languages (C++, Java), an error is thrown when client tries to access private attribute, but in Python all attributes are technically public.</li>
+<li>SO: Python convention is that attributes that start with an underscore aren&#39;t part of the interface.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2008,25 +2315,45 @@ public vs. private</p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="-a-name-inheritance-inheritance-a-"><a name="inheritance">Inheritance</a></h2>
-<p>One way to define how your class behaves is through implementing magic methods, the other is to inherit from another class</p>
-<p>Three ways that the parent and child classes can interact: Actions on the child imply an action on the parent. Actions on the child override the action on the parent. Actions on the child alter the action on the parent.</p>
-<p>reasons: factor out common code
-subclass
-you can subclass built in types
-e.g., extend list object to contain methods    returning only the odds or only the evens.
-subclass list type to return evens() and odds()</p>
+<p><a href="http://en.wikipedia.org/wiki/Inheritance_%28object-oriented_programming%29">Inheritance</a> - a mechanism for code reuse. The relationships of objects or classes through inheritance give rise to a hierarchy. </p>
+<p>Last week we learned how to define class behavior via implementing the Python special methods, e.g., <code>__len__</code>, <code>__contains__</code>, etc.</p>
+<p>Another way to define how class behaves is to have your class <em>Inherit</em> from another class. Inherited class is known as the parent class or superclass, inheriting class known as the child class or subclass.</p>
+<p>Reasons for inheriting</p>
+<ol>
+<li>Factor out common code</li>
+<li>Extend the functionality of an existing class without reimplementing the whole class.</li>
+</ol>
+<p>There are three ways that the parent and child classes can interact</p>
+<ol>
+<li>Actions on the child imply an action on the parent.</li>
+<li>Actions on the child override the action on the parent.</li>
+<li><p>Actions on the child alter the action on the parent.</p>
+</li>
+<li><p>You can subclass built in types!</p>
+<ul>
+<li>e.g., extend list object to contain methods returning only the odds or only the evens.</li>
+</ul>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[18]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="k">class</span> <span class="nc">evens</span><span class="p">(</span><span class="nb">list</span><span class="p">):</span>
-    <span class="k">pass</span>
+<div class="highlight"><pre><span class="c"># In Python, to inherit a class, enclose it in parentheses in the first line</span>
+<span class="c"># of the class declaration</span>
+<span class="k">class</span> <span class="nc">EnhancedList</span><span class="p">(</span> <span class="nb">list</span> <span class="p">):</span>
+    
+    <span class="k">def</span> <span class="nf">ReturnOdds</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">ReturnEvens</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
 </pre></div>
 
 </div>
@@ -2039,25 +2366,25 @@ In&nbsp;[2]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>isa() vs hasa()
-isinstance() vs. type()
+<ul>
+<li>Inheritance sets up an <a href="http://en.wikipedia.org/wiki/Is-a">Is-a</a> relationship between classes<ul>
+<li>E.g., A salmon is a fish.</li>
+<li>Python function <code>isa( classa, classb )</code> returns <code>True</code> if <code>classa</code> inherits from <code>classb</code></li>
+</ul>
+</li>
+<li>In contrast if your class uses another class as one of its data attributes, the relationship between the classes is known as a <a href="http://en.wikipedia.org/wiki/Has-a">Has-a</a> relationship.<ul>
+<li>E.g., A salmon has two gills.</li>
+<li>Idea of combining symple types into more complex ones is known as <a href="http://en.wikipedia.org/wiki/Object_composition">object composition</a></li>
+<li>Python function <code>hasa( classa, classb )</code> returns <code>True</code> if <code>classa</code> has a data member of type <code>classb</code>.</li>
+</ul>
+</li>
+<li>isinstance() vs. type()
 issubclass()
 overloaded
 multiple inheritance many frown upon this
 using super()
-help() will show what methods are defined where
-compositon
-aAphrase to say that something inherits from another, as in a Salmon is-a Fish</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="-a-name-exceptions-exceptions-are-classes-too-a-"><a name="exceptions">Exceptions are classes, too</a></h2>
-<p>Exceptions have an inheritance pattern</p>
+help() will show what methods are defined where</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2067,15 +2394,31 @@ aAphrase to say that something inherits from another, as in a Salmon is-a Fish</
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="-a-name-abc-abstract-base-classes-a-"><a name="ABC">Abstract Base Classes</a></h1>
-<p><a href="http://en.wikipedia.org/wiki/Abstract_data_types">Abstract Data Type</a></p>
-<p>A class that describes how its children classes will behave, but leaves the implementation details up to the children. 
-<a href="http://en.wikipedia.org/wiki/Design_by_contract">Design by contract</a>:  –  Any object that inherits from an abstract base class is required to implement 
-Examples
-class mammal, method speak
-class shape, method area 
-Opposite of Abstract class = Concrete class </p>
+<p>Moar OOP buzzwords:</p>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Abstract_data_types">Abstract Data Type</a> - A class that describes how its children classes will behave, but leaves the implementation details up to the children. </li>
+<li><a href="http://en.wikipedia.org/wiki/Design_by_contract">Design by contract</a>  –  Any object that inherits from an abstract base class is required to implement</li>
+</ul>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Examples</span>
+<span class="k">class</span> <span class="nc">mammal</span><span class="p">,</span> <span class="n">method</span> <span class="n">speak</span>
+<span class="k">class</span> <span class="nc">shape</span><span class="p">,</span> <span class="n">method</span> <span class="n">area</span> 
+<span class="n">Opposite</span> <span class="n">of</span> <span class="n">Abstract</span> <span class="k">class</span> <span class="err">= </span><span class="nc">Concrete</span> <span class="k">class</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2083,9 +2426,237 @@ Opposite of Abstract class = Concrete class </p>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="-a-name-hw4-homework-4-discussion-a-"><a name="hw4">Homework 4 Discussion</a></h2>
-<p>implement</p>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[2]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">FAES BIOF309 Introduction To Python</span>
+<span class="sd">Template File for Homework 4:</span>
+<span class="sd">OBJECT-ORIENTED NUCLEOTIDE-TO-AMINO-ACID TRANSLATOR</span>
+
+<span class="sd">Anywhere you see a &quot;raise NotImplementedError&quot; in this file, you have to fill in that method&#39;s </span>
+<span class="sd">implementation.</span>
+
+<span class="sd">You are not allowed to change the method declaration lines, which are the lines with the</span>
+<span class="sd">&quot;def&quot; in them. In computer science terms &quot;the interface is fixed.&quot;</span>
+<span class="sd">However, the implementation details are totally up to you. Feel free to add any</span>
+<span class="sd">private helper methods (i.e., methods for internal use only, ones that start with &#39;_&#39;)</span>
+<span class="sd">to any of the classes.</span>
+
+<span class="sd">The base class NucleotideSequence is inherited by the subclasses DNASequence</span>
+<span class="sd">and RNASequence. You are implementing functions in the base class which means the logic</span>
+<span class="sd">must work for both DNA and RNA. The instance attributes &quot;self._translation_table&quot;, </span>
+<span class="sd">&quot;self._valid_nts&quot; are all set to their proper DNA/RNA values in each subclass&#39;</span>
+<span class="sd">__init__() function, so you can make your methods work independent of </span>
+<span class="sd">whether they&#39;re DNA or RNA by referencing those two instance attributes </span>
+<span class="sd">rather than hardcoding &#39;G&#39;, &#39;A&#39;, &#39;C&#39;, &#39;T&#39;, or &#39;U&#39; in anywhere. Also, it is not allowed</span>
+<span class="sd">to mention the subclasses in base class code. In other words, you can&#39;t use the</span>
+<span class="sd">words &quot;DNASequence&quot; or &quot;RNASequence&quot; anywhere in your base class code.</span>
+
+<span class="sd">A new genomics concept that is introduced in this assignment that was left</span>
+<span class="sd">out of the last assignment is the concept of choosing a desired reading frame before</span>
+<span class="sd">translating the sequence to AA. The template methods given below have arguments</span>
+<span class="sd">in which the directionality of the transcription can be specified </span>
+<span class="sd">( True = 5&#39;to3&#39;, False = 3&#39;to5&#39; ) as well as the position of the reading frame (1, 2, or 3).</span>
+
+<span class="sd">I will use as input to test your implementation a mRNA sequence which contains more</span>
+<span class="sd">than just one coding region. If you want to get an A, your code must find and return all the </span>
+<span class="sd">open reading frames (coding regions) in my input sequence (see the function </span>
+<span class="sd">OpenReadingFrames() below).</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="c">#==================================================================</span>
+<span class="k">class</span> <span class="nc">NucleotideSequence</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Abstract base class to be inherited by subclasses DNASequence and RNASequence.</span>
+
+<span class="sd">    Your assignment is to replace each &quot;raise NotImplementedError&quot; line with your</span>
+<span class="sd">    implementation of that method.</span>
+<span class="sd">    </span>
+<span class="sd">    This class is not meant to be used in the wild, meaning you wouldn&#39;t ever </span>
+<span class="sd">    instantiate an object of class NucleotideSequence, but rather you would only ever</span>
+<span class="sd">    instantiate an object of DNASequence or RNASequence, and that the functionality</span>
+<span class="sd">    you&#39;re about to implement here in the base class would be &quot;inherited&quot; by the subclasses.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Class attributes</span>
+    <span class="n">_translation_table</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_valid_nts</span> <span class="o">=</span> <span class="bp">None</span>
+    
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="bp">None</span> <span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span> <span class="o">=</span> <span class="n">sequence</span>
+
+    <span class="c"># YOU MUST IMPLEMENT THE FOLLOWING METHODS FOR A MAXIMUM GRADE OF C:</span>
+
+    <span class="k">def</span> <span class="nf">__len__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is the method Python will run when the user calls len() on this instance.</span>
+<span class="sd">        Return the total number of ucleotides in the sequence contained in self._data.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is the method Python will run when the user calls str() on this instance&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is the method Python will run when the user types the name of the</span>
+<span class="sd">        instance in a Python interpreter.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">__contains__</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">substr</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is the method Python will run when the user wants to use the keyword &quot;in&quot;,</span>
+<span class="sd">        e.g., &quot;TAG&quot; in my_sequence.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">count</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">substring</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">maxint</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the number of times the substring appears in the sequence.</span>
+<span class="sd">        This function should work just like str.count.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">IsValidSequence</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function should raise a ValueError if it detects a character</span>
+<span class="sd">        which is not a valid nucleotide character for its molecule type.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="k">def</span> <span class="nf">GCContent</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the fraction of nucleotides in this sequence that are Cytosine and Guanine&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+
+    <span class="c">#==================================================================</span>
+    <span class="c"># YOU MUST IMPLEMENT THE FOLLOWING METHODS FOR A MAXIMUM GRADE OF B</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">NewFromFastaFile</span><span class="p">(</span> <span class="n">cls</span><span class="p">,</span> <span class="n">path_to_fasta_file</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function should read a nucleotide sequence from a fasta file,</span>
+<span class="sd">        parse it, check if the nucleotide sequence is valid by calling IsValidSequence(),</span>
+<span class="sd">        instantiate a new object, populate its instance attribute &quot;_data&quot; with the sequence,</span>
+<span class="sd">        and finally return the new instance.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c">#==================================================================</span>
+    <span class="k">def</span> <span class="nf">TranslateToAA</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">directionality5to3</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">reading_frame</span><span class="o">=</span><span class="mi">1</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the sequence translated into amino acids. The user is able to specify</span>
+<span class="sd">        the direction of translation (5&#39;-&gt;3&#39; or vice versa) and the reading frame offset,</span>
+<span class="sd">        either 1, 2, or 3&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c">#==================================================================</span>
+    <span class="c"># YOU MUST IMPLEMENT THE FOLLOWING METHOD FOR A MAXIMUM GRADE OF A</span>
+
+    <span class="k">def</span> <span class="nf">OpenReadingFrames</span><span class="p">(</span> <span class="bp">self</span><span class="p">,</span> <span class="n">directionality5to3</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">reading_frame</span><span class="o">=</span><span class="mi">1</span> <span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function should return a list of tuples which contain, for the given </span>
+<span class="sd">        directionality and reading frame, 1. the aa start position, 2. aa end position, and </span>
+<span class="sd">        3. amino acid sequence of every open reading frame in the sequence. Remember,</span>
+<span class="sd">        ORFs start with a Methionine (generally) and end with a stop codon. Hint:</span>
+<span class="sd">        use a regular expression.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+    <span class="c"># end class NucleotideSequence definition</span>
+    <span class="c">#==================================================================</span>
+
+<span class="n">dna_codon_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&quot;TTT&quot;</span> <span class="p">:</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;TCT&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;TAT&quot;</span> <span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;TGT&quot;</span> <span class="p">:</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> \
+<span class="s">&quot;TTC&quot;</span> <span class="p">:</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;TCC&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;TAC&quot;</span> <span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;TGC&quot;</span> <span class="p">:</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> \
+<span class="s">&quot;TTA&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;TCA&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;TAA&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;TGA&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> \
+<span class="s">&quot;TTG&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;TCG&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;TAG&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;TGG&quot;</span> <span class="p">:</span> <span class="s">&quot;W&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CTT&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCT&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAT&quot;</span> <span class="p">:</span> <span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;CGT&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CTC&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCC&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAC&quot;</span> <span class="p">:</span> <span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;CGC&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CTA&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCA&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAA&quot;</span> <span class="p">:</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;CGA&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CTG&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCG&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAG&quot;</span> <span class="p">:</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;CGG&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;ATT&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACT&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAT&quot;</span> <span class="p">:</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;AGT&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> \
+<span class="s">&quot;ATC&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACC&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAC&quot;</span> <span class="p">:</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;AGC&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> \
+<span class="s">&quot;ATA&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACA&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAA&quot;</span> <span class="p">:</span> <span class="s">&quot;K&quot;</span><span class="p">,</span> <span class="s">&quot;AGA&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;ATG&quot;</span> <span class="p">:</span> <span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;ACG&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAG&quot;</span> <span class="p">:</span> <span class="s">&quot;K&quot;</span><span class="p">,</span> <span class="s">&quot;AGG&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GTT&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCT&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAT&quot;</span> <span class="p">:</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;GGT&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GTC&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCC&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAC&quot;</span> <span class="p">:</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;GGC&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GTA&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCA&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAA&quot;</span> <span class="p">:</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;GGA&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GTG&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCG&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAG&quot;</span> <span class="p">:</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;GGG&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span> <span class="p">}</span>
+
+<span class="n">rna_codon_dict</span> <span class="o">=</span> <span class="p">{</span> <span class="s">&quot;UUU&quot;</span> <span class="p">:</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;UCU&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;UAU&quot;</span> <span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;UGU&quot;</span> <span class="p">:</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> \
+<span class="s">&quot;UUC&quot;</span> <span class="p">:</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;UCC&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;UAC&quot;</span> <span class="p">:</span> <span class="s">&quot;Y&quot;</span><span class="p">,</span> <span class="s">&quot;UGC&quot;</span> <span class="p">:</span> <span class="s">&quot;C&quot;</span><span class="p">,</span> \
+<span class="s">&quot;UUA&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;UCA&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;UAA&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;UGA&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> \
+<span class="s">&quot;UUG&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;UCG&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> <span class="s">&quot;UAG&quot;</span> <span class="p">:</span> <span class="s">&quot;.&quot;</span><span class="p">,</span> <span class="s">&quot;UGG&quot;</span> <span class="p">:</span> <span class="s">&quot;W&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CUU&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCU&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAU&quot;</span> <span class="p">:</span> <span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;CGU&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CUC&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCC&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAC&quot;</span> <span class="p">:</span> <span class="s">&quot;H&quot;</span><span class="p">,</span> <span class="s">&quot;CGC&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CUA&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCA&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAA&quot;</span> <span class="p">:</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;CGA&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;CUG&quot;</span> <span class="p">:</span> <span class="s">&quot;L&quot;</span><span class="p">,</span> <span class="s">&quot;CCG&quot;</span> <span class="p">:</span> <span class="s">&quot;P&quot;</span><span class="p">,</span> <span class="s">&quot;CAG&quot;</span> <span class="p">:</span> <span class="s">&quot;Q&quot;</span><span class="p">,</span> <span class="s">&quot;CGG&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;AUU&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACU&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAU&quot;</span> <span class="p">:</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;AGU&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> \
+<span class="s">&quot;AUC&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACC&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAC&quot;</span> <span class="p">:</span> <span class="s">&quot;N&quot;</span><span class="p">,</span> <span class="s">&quot;AGC&quot;</span> <span class="p">:</span> <span class="s">&quot;S&quot;</span><span class="p">,</span> \
+<span class="s">&quot;AUA&quot;</span> <span class="p">:</span> <span class="s">&quot;I&quot;</span><span class="p">,</span> <span class="s">&quot;ACA&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAA&quot;</span> <span class="p">:</span> <span class="s">&quot;K&quot;</span><span class="p">,</span> <span class="s">&quot;AGA&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;AUG&quot;</span> <span class="p">:</span> <span class="s">&quot;M&quot;</span><span class="p">,</span> <span class="s">&quot;ACG&quot;</span> <span class="p">:</span> <span class="s">&quot;T&quot;</span><span class="p">,</span> <span class="s">&quot;AAG&quot;</span> <span class="p">:</span> <span class="s">&quot;K&quot;</span><span class="p">,</span> <span class="s">&quot;AGG&quot;</span> <span class="p">:</span> <span class="s">&quot;R&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GUU&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCU&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAU&quot;</span> <span class="p">:</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;GGU&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GUC&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCC&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAC&quot;</span> <span class="p">:</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;GGC&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GUA&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCA&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAA&quot;</span> <span class="p">:</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;GGA&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span><span class="p">,</span> \
+<span class="s">&quot;GUG&quot;</span> <span class="p">:</span> <span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;GCG&quot;</span> <span class="p">:</span> <span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;GAG&quot;</span> <span class="p">:</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;GGG&quot;</span> <span class="p">:</span> <span class="s">&quot;G&quot;</span> <span class="p">}</span>
+
+<span class="k">class</span> <span class="nc">DNASequence</span><span class="p">(</span> <span class="n">NucleotideSequence</span> <span class="p">):</span>
+
+    <span class="c"># Class attributes</span>
+    <span class="n">_translation_table</span> <span class="o">=</span> <span class="n">dna_codon_dict</span>
+    <span class="n">_valid_nts</span> <span class="o">=</span> <span class="s">&quot;AGCT&quot;</span>
+
+    <span class="c"># All other attributes inherited from base class</span>
+
+<span class="k">class</span> <span class="nc">RNASequence</span><span class="p">(</span> <span class="n">NucleotideSequence</span> <span class="p">):</span>
+
+    <span class="c"># Class Attributes</span>
+    <span class="n">_translation_table</span> <span class="o">=</span> <span class="n">rna_codon_dict</span>
+    <span class="n">_valid_nts</span> <span class="o">=</span> <span class="s">&quot;AGCU&quot;</span>
+
+    <span class="c"># All other attributes inherited from base class</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+
+    <span class="n">DNAseq</span> <span class="o">=</span> <span class="n">DNASequence</span><span class="o">.</span><span class="n">NewFromFastaFile</span><span class="p">(</span> <span class="s">&#39;zscan4.fasta&#39;</span> <span class="p">)</span>
+
+    <span class="n">reading_frames</span> <span class="o">=</span> <span class="p">(</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="bp">True</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="bp">False</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span> <span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">direction</span><span class="p">,</span> <span class="n">reading_frame</span> <span class="ow">in</span> <span class="n">reading_frames</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;{} direction, reading frame {}:&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span> <span class="s">&quot;5&#39;to3&#39;&quot;</span> <span class="k">if</span> <span class="n">direction</span> <span class="k">else</span> <span class="s">&quot;3&#39;to5&#39;&quot;</span><span class="p">,</span> <span class="n">reading_frame</span> <span class="p">)</span>
+        <span class="k">print</span> <span class="n">DNAseq</span><span class="o">.</span><span class="n">OpenReadingFrames</span><span class="p">(</span> <span class="n">direction</span><span class="p">,</span> <span class="n">reading_frame</span> <span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-2-6ec0baaca28e&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">    143</span> <span class="ansigreen">if</span> __name__ <span class="ansiblue">==</span> <span class="ansiblue">&apos;__main__&apos;</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+<span class="ansigreen">    144</span> <span class="ansiblue"></span>
+<span class="ansigreen">--&gt; 145</span><span class="ansired">     </span>DNAseq <span class="ansiblue">=</span> DNASequence<span class="ansiblue">.</span>NewFromFastaFile<span class="ansiblue">(</span> <span class="ansiblue">&apos;zscan4.fasta&apos;</span> <span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">    146</span> <span class="ansiblue"></span>
+<span class="ansigreen">    147</span>     reading_frames <span class="ansiblue">=</span> <span class="ansiblue">(</span> <span class="ansiblue">(</span>True<span class="ansiblue">,</span> <span class="ansicyan">1</span><span class="ansiblue">)</span><span class="ansiblue">,</span> <span class="ansiblue">(</span>True<span class="ansiblue">,</span> <span class="ansicyan">2</span><span class="ansiblue">)</span><span class="ansiblue">,</span> <span class="ansiblue">(</span>True<span class="ansiblue">,</span> <span class="ansicyan">3</span><span class="ansiblue">)</span><span class="ansiblue">,</span> <span class="ansiblue">(</span>False<span class="ansiblue">,</span> <span class="ansicyan">1</span><span class="ansiblue">)</span><span class="ansiblue">,</span> <span class="ansiblue">(</span>False<span class="ansiblue">,</span> <span class="ansicyan">2</span><span class="ansiblue">)</span><span class="ansiblue">,</span> <span class="ansiblue">(</span>False<span class="ansiblue">,</span> <span class="ansicyan">3</span><span class="ansiblue">)</span> <span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansigreen">&lt;ipython-input-2-6ec0baaca28e&gt;</span> in <span class="ansicyan">NewFromFastaFile</span><span class="ansiblue">(cls, path_to_fasta_file)</span>
+<span class="ansigreen">     98</span>         instantiate a new object<span class="ansiblue">,</span> populate its instance attribute <span class="ansiblue">&quot;_data&quot;</span> <span class="ansigreen">with</span> the sequence<span class="ansiblue">,</span><span class="ansiblue"></span>
+<span class="ansigreen">     99</span>         and finally return the new instance.&quot;&quot;&quot;
+<span class="ansigreen">--&gt; 100</span><span class="ansired">         </span><span class="ansigreen">raise</span> NotImplementedError<span class="ansiblue"></span>
+<span class="ansigreen">    101</span> <span class="ansiblue"></span>
+<span class="ansigreen">    102</span>     <span class="ansired">#==================================================================</span><span class="ansiblue"></span><span class="ansiblue"></span>
+
+<span class="ansired">NotImplementedError</span>: </pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
