@@ -1877,9 +1877,6 @@ In&nbsp;[36]:
     <span class="n">TheInnerFunction</span><span class="p">()</span>
     <span class="k">print</span> <span class="s">&quot;Printed from the outer function.&quot;</span>
     
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mf">1e6</span><span class="p">):</span>
-        <span class="n">TheInnerFunction</span><span class="p">()</span>
-    
     
 <span class="n">TheOuterFunction</span><span class="p">(</span> <span class="s">&quot;gobbledygook&quot;</span> <span class="p">)</span>
 </pre></div>
@@ -2023,7 +2020,7 @@ The function made me!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[26]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2054,7 +2051,7 @@ In&nbsp;[26]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2063,23 +2060,6 @@ In&nbsp;[]:
     <span class="k">return</span> <span class="mi">1</span>
 
 <span class="n">ResultFunction</span> <span class="o">=</span> <span class="n">DecorateThis</span><span class="p">(</span> <span class="n">DecoratedFunction</span> <span class="p">)</span>
-
-<span class="n">ResultFunction</span><span class="p">()</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[39]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">ResultFunction</span> <span class="o">=</span> <span class="n">DecorateThis</span><span class="p">(</span> <span class="n">DecoratedFunction</span> <span class="p">)</span>
 
 <span class="n">ResultFunction</span><span class="p">()</span>
 </pre></div>
@@ -2103,7 +2083,7 @@ Now running original function!
 </div>
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[39]:</div>
+    Out[4]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -2121,12 +2101,11 @@ Now running original function!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[41]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># or</span>
-<span class="nd">@DecorateThis</span>
+<div class="highlight"><pre><span class="nd">@DecorateThis</span>
 <span class="k">def</span> <span class="nf">ResultFunction</span><span class="p">():</span>
     <span class="k">print</span> <span class="s">&quot;Now running original function!&quot;</span>
     <span class="k">return</span> <span class="mi">1</span>
@@ -2153,7 +2132,7 @@ Now running original function!
 </div>
 
 <div class="output_area"><div class="prompt output_prompt">
-    Out[41]:</div>
+    Out[3]:</div>
 
 
 <div class="output_text output_subarea output_pyout">
@@ -3390,47 +3369,12 @@ In&nbsp;[98]:
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[24]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="c"># isinstance(the_obj, the_type) returns True if the_obj is of type the_type</span>
-<span class="nb">isinstance</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[24]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-True
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="-a-name-abc-abstract-base-classes-a-"><a name="ABC">Abstract Base Classes</a></h1>
+<h1 id="-a-name-abc-abstract-base-classes-abcs-a-"><a name="ABC">Abstract Base Classes (ABCs)</a></h1>
 <p>Moar OOP buzzwords:</p>
 <ul>
 <li><a href="http://en.wikipedia.org/wiki/Abstract_data_types">Abstract Data Type</a> - A class that describes how its children classes will behave, but leaves the implementation details up to the children. </li>
@@ -3439,22 +3383,6 @@ True
 </ul>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="c"># Examples</span>
-<span class="k">class</span> <span class="nc">mammal</span><span class="p">,</span> <span class="n">method</span> <span class="n">speak</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -3601,6 +3529,149 @@ In&nbsp;[110]:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[7]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Another example of an ABC:</span>
+<span class="k">class</span> <span class="nc">mammal</span><span class="p">(</span> <span class="nb">object</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Because you put this method in the base class,</span>
+<span class="sd">        the subclasses that inherit this base class are &quot;under contract&quot;</span>
+<span class="sd">        to implement it. If you don&#39;t, that&#39;s saying the subclass&#39;s</span>
+<span class="sd">        implementation is incomplete.&quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="k">class</span> <span class="nc">dog</span><span class="p">(</span> <span class="n">mammal</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Woof!&quot;</span>
+
+<span class="k">class</span> <span class="nc">cow</span><span class="p">(</span> <span class="n">mammal</span> <span class="p">):</span>
+    <span class="k">def</span> <span class="nf">speak</span><span class="p">(</span> <span class="bp">self</span> <span class="p">):</span>
+        <span class="k">print</span> <span class="s">&quot;Moo!&quot;</span>
+
+<span class="k">class</span> <span class="nc">cat</span><span class="p">(</span> <span class="n">mammal</span> <span class="p">):</span>
+    <span class="c"># Whoops, forgot to implement the speak method!</span>
+    <span class="k">pass</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[9]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">fido</span> <span class="o">=</span> <span class="n">dog</span><span class="p">()</span>
+<span class="n">fido</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Woof!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[8]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">bessie</span> <span class="o">=</span> <span class="n">cow</span><span class="p">()</span>
+<span class="n">bessie</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+Moo!
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[11]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># problem!</span>
+<span class="n">garfield</span> <span class="o">=</span> <span class="n">cat</span><span class="p">()</span>
+<span class="n">garfield</span><span class="o">.</span><span class="n">speak</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">NotImplementedError</span>                       Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-11-7701a527e2e6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansired"># problem!</span><span class="ansiblue"></span><span class="ansiblue"></span>
+<span class="ansigreen">      2</span> garfield <span class="ansiblue">=</span> cat<span class="ansiblue">(</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+<span class="ansigreen">----&gt; 3</span><span class="ansired"> </span>garfield<span class="ansiblue">.</span>speak<span class="ansiblue">(</span><span class="ansiblue">)</span><span class="ansiblue"></span>
+
+<span class="ansigreen">&lt;ipython-input-7-38f3bba80259&gt;</span> in <span class="ansicyan">speak</span><span class="ansiblue">(self)</span>
+<span class="ansigreen">      6</span>         to implement it<span class="ansiblue">.</span> If you don<span class="ansiblue">&apos;t, that&apos;</span>s saying the subclass<span class="ansired">&apos;</span>s<span class="ansiblue"></span>
+<span class="ansigreen">      7</span>         implementation is incomplete.&quot;&quot;&quot;
+<span class="ansigreen">----&gt; 8</span><span class="ansired">         </span><span class="ansigreen">raise</span> NotImplementedError<span class="ansiblue"></span>
+<span class="ansigreen">      9</span> <span class="ansiblue"></span>
+<span class="ansigreen">     10</span> <span class="ansigreen">class</span> dog<span class="ansiblue">(</span> mammal <span class="ansiblue">)</span><span class="ansiblue">:</span><span class="ansiblue"></span>
+
+<span class="ansired">NotImplementedError</span>: </pre>
+</div>
+</div>
+
 </div>
 </div>
 
