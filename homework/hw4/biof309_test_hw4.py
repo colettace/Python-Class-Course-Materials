@@ -44,6 +44,16 @@ zscan4_orfs[(False, 3)]=\
 #=========================================================================
 class TestModule( object ):
     student_module = None
+    cgrades = 0
+    bgrades = 0
+    agrades = 0
+    total_cgrades = 7
+    total_bgrades = 3
+    total_agrades = 1
+    total_cpoints = 75
+    total_bpoints = 12
+    total_apoints = 13
+
 
     def __init__( self ):
         import os.path
@@ -54,8 +64,27 @@ class TestModule( object ):
     def getMod():
         return TestModule.student_module
 
+    @staticmethod
+    def Report():
+        grades = ['A', 'B', 'C']
+        rptstr = "tests passed: {}, required: {}, percent {:.02f}. Total points {}, your points {:.01f}"
+
+        total = 0
+        for grade in grades[::-1]:
+            print "Grade {} tests:".format( grade )
+            passed = getattr( TestModule, "{}grades".format( grade.lower() ) )
+            required = getattr( TestModule, "total_{}grades".format( grade.lower() ) )
+            points = getattr( TestModule, "total_{}points".format( grade.lower() ) )
+            fraction = float( passed ) / required
+            points_awarded = fraction * points
+            print rptstr.format( passed, required, fraction * 100, points, points_awarded )
+            total += points_awarded
+        print "Your grade: {:0.2f}".format( total )
+
+        
+
 #=========================================================================
-class TestHW4DNA( unittest.TestCase ):
+class TestHW4DNAFunctionality( unittest.TestCase ):
     """All these test have to pass to get an A"""
 
     def setUp( self ):
@@ -66,7 +95,7 @@ class TestHW4DNA( unittest.TestCase ):
         self.errmsg_no_implement = "Tried to use {} on an instance of your class but I got a " +\
                      "TypeError. Either you forgot to implement the special function {}" +\
                      " or something is wrong with your implementation."
-        self.errmsg_wrong_output = "Wrong output!! Called:\n{}\nExpected:\n{}\nGot:\n{}"
+        self.errmsg_wrong_output = "Wrong output!!\n\nCalled:\n{}\n\nExpected output:\n{}\n\nYour method returned:\n{}"
 
 
     # The C grade tests
@@ -86,6 +115,8 @@ class TestHW4DNA( unittest.TestCase ):
         except AssertionError:
             self.fail( self.errmsg_wrong_output.format( "len( zscan4 )", len(zscan4_dna_seq), thelen ) )
 
+        TestModule.cgrades += 1
+
     #============================================
     def test_str( self ):
         """Check to see str() was implemented and returns correct output"""
@@ -101,6 +132,8 @@ class TestHW4DNA( unittest.TestCase ):
         except AssertionError:
             self.fail( self.errmsg_wrong_output.format( "str( zscan4 )", zscan4_dna_seq, thestr ) )
 
+        TestModule.cgrades += 1
+
     #============================================
     def test_repr( self ):
         """Check to see __repr__() was implemented"""
@@ -108,6 +141,8 @@ class TestHW4DNA( unittest.TestCase ):
             self.zscan4.__repr__()
         except NotImplementedError:
             self.fail( "You forgot to implement {}!".format( '__repr__' ) )
+
+        TestModule.cgrades += 1
 
     #============================================
     def test_in( self ):
@@ -126,6 +161,9 @@ class TestHW4DNA( unittest.TestCase ):
             print zscan4_dna_test_substring
             self.fail( self.errmsg_wrong_output.format( "zscan4_dna_test_substring in zscan4", True, inval )  )
 
+
+        TestModule.cgrades += 1
+
     #============================================
     def test_count( self ):
         """Check to see count() was implemented and returns correct output"""
@@ -140,6 +178,8 @@ class TestHW4DNA( unittest.TestCase ):
             self.assertEqual( 14, count )
         except AssertionError:
             self.fail( self.errmsg_wrong_output.format( "zscan4.count('GGAA')", 14, count )  )
+
+        TestModule.cgrades += 1
 
     #============================================
     def test_IsValidSequence( self ):
@@ -156,6 +196,8 @@ class TestHW4DNA( unittest.TestCase ):
         except AssertionError:
             self.fail( self.errmsg_wrong_output.format( "zscan4.IsValidSequence()", True, isvalid )  )
 
+        TestModule.cgrades += 1
+
     #============================================
     def test_GCContent( self ):
         """Check to see GCContent() was implemented and returns correct output"""
@@ -167,10 +209,12 @@ class TestHW4DNA( unittest.TestCase ):
             self.fail( "You forgot to implement {}!".format( 'GCContent()' ) )
 
         try:
-            self.assertAlmostEqual( val, 0.413716814159 )
+            self.assertAlmostEqual( val, 0.4137168 )
         except AssertionError:
-            self.fail( self.errmsg_wrong_output.format( "zscan4.GCContent()", 0.413716814159, val )  )
+            self.fail( self.errmsg_wrong_output.format( "zscan4.GCContent()", 0.4137168, val )  )
 
+
+        TestModule.cgrades += 1
     # The B grade tests
 
 
@@ -185,6 +229,8 @@ class TestHW4DNA( unittest.TestCase ):
             self.fail( "You forgot to implement {}!".format( 'NewFromFastaFile()' ) )
 
 
+        TestModule.bgrades += 1
+
     #============================================
     def test_TranslateToAA( self ):
         """Check to see TranslateToAA() was implemented and returns correct output"""
@@ -192,31 +238,72 @@ class TestHW4DNA( unittest.TestCase ):
         reading_frames = ( (True, 1), (True, 2), (True, 3), (False, 1), (False, 2), (False, 3) )
         data = zip( reading_frames, zscan4_translated_aa.splitlines() )
 
-        for (direction, reading_frame), correct_aa in data:
-            aa_chain = self.zscan4.TranslateToAA( direction, reading_frame )
-            self.assertItemsEqual( aa_chain, correct_aa )
-            self.assertEqual( aa_chain, correct_aa )
+        direction = None
+        reading_frame = None
+        try:
+            for (direction, reading_frame), correct_aa in data:
+                aa_chain = self.zscan4.TranslateToAA( direction, reading_frame )
+                self.assertItemsEqual( aa_chain, correct_aa )
+                self.assertEqual( aa_chain, correct_aa )
+        except AssertionError as e:
+            errmsg = "ERROR occurred when calling TranslateToAA() in the {} direction, reading frame {}:\n".format( "5'to3'" if direction else "3'to5'", reading_frame )
+            import sys
+            raise type(e), type(e)(errmsg + e.message), sys.exc_info()[2]
 
+
+        TestModule.bgrades += 1
     # The A grade tests
 
     #============================================
     def test_OpenReadingFrames( self ):
-        """Check to see TranslateToAA() was implemented and returns correct output"""
+        """Check to see OpenReadingFrames() was implemented and returns correct output"""
         reading_frames = ( (True, 1), (True, 2), (True, 3), (False, 1), (False, 2), (False, 3) )
 
-        for rf in reading_frames:
-            direction, reading_frame = rf
-            val = self.zscan4.OpenReadingFrames( direction, reading_frame )
-            self.assertTupleEqual( val, zscan4_orfs[rf] )
+        rf = None
+        try:
+            for rf in reading_frames:
+                direction, reading_frame = rf
+                val = self.zscan4.OpenReadingFrames( direction, reading_frame )
+                self.assertTupleEqual( val, zscan4_orfs[rf] )
+        except AssertionError as e:
+            errmsg = "ERROR occurred when calling TranslateToAA() in the {} direction, reading frame {}:\n".format( "5'to3'" if direction else "3'to5'", reading_frame )
+            import sys
+            raise type(e), type(e)(errmsg + e.message), sys.exc_info()[2]
 
+
+        TestModule.agrades += 1
+
+#=========================================================================
+class TestHW4DNADummyproofing( unittest.TestCase ):
+    """All these test have to pass to get an A"""
+
+    def setUp( self ):
+        self.stumod = TestModule.getMod()
+ 
+    #============================================
+    def test_IsValidSequence_invalid( self ):
+        """Check to see IsValidSequence() was implemented and returns correct output"""
+        try: 
+            self.assertRaises( ValueError, self.stumod.DNASequence.NewFromFastaFile, 
+                'zscan4_dna_invalid_nt.fasta')
+        except AssertionError:
+                self.fail( "Your NewFromFastaFile did not raise a ValueError when importing "+\
+                    'zscan4_dna_invalid_nt.fasta')
+
+
+        TestModule.bgrades += 1
 
 
 if __name__ == '__main__':
 
 
-    _ = TestModule()
+    module = TestModule()
 
     print "******************BIOF 309 HW4 TEST PROGRAM, version 1.0 *******************"
 
     del sys.argv[1:]
-    unittest.main(verbosity=3)
+    try:
+        unittest.main(verbosity=3)
+    finally:
+        module.Report()
+
